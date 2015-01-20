@@ -1,1 +1,1 @@
-ofxGPIOpi
+ofxGPIO
