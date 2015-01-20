@@ -25,6 +25,7 @@ Example GPIO I2C communication:
 	<li>Arduino</li>
 	<li>LED</li>
 	<li>Resistor 75 ohm</li>
+	<li>wiring</li>
 	</ul>
 <br>
 fritzing example:
@@ -32,4 +33,19 @@ fritzing example:
 <br>
 video: <a href="http://www.youtube.com/watch?v=SRz750EdjfY">http://www.youtube.com/watch?v=SRz750EdjfY</a>
 [![video](http://img.youtube.com/vi/SRz750EdjfY/maxresdefault.jpg)](http://www.youtube.com/watch?v=SRz750EdjfY)
+<br><br>
+
+Example GPIO SPI read/write
+	<ul>
+	<li>Raspberry</li>
+	<li>MCP3008</li>
+	<li>Potentiometer</li>
+	<li>wiring</li>
+	</ul>
+<br>
+fritzing example:
+![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/spi_mcp_raspberry_bb.jpg)
+<br>
+<!--video: <a href="http://www.youtube.com/watch?v=SRz750EdjfY">http://www.youtube.com/watch?v=SRz750EdjfY</a>
+[![video](http://img.youtube.com/vi/SRz750EdjfY/maxresdefault.jpg)](http://www.youtube.com/watch?v=SRz750EdjfY)-->
 
