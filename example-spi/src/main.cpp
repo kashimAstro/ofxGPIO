@@ -5,13 +5,16 @@
 class noWin : public ofBaseApp{
         public:
 		SPI * spi;
-	        int i = 20;
-	        int a2dVal = 0;
-	        int a2dChannel = 0;
+	        int i;
+	        int a2dVal;
+	        int a2dChannel;
 	        unsigned char data[3];
 
 		void setup(){
-		        spi = new("/dev/spidev0.0", SPI_MODE_0, 1000000, 8);
+		        i = 20;
+		        a2dVal = 0;
+		        a2dChannel = 0;
+		        spi = new SPI("/dev/spidev0.0", SPI_MODE_0, 1000000, 8);
 		}
 		
 		void update(){
