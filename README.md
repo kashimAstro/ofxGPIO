@@ -46,6 +46,6 @@ Example GPIO SPI read/write
 fritzing example:
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/spi_mcp_raspberry_bb.jpg)
 <br>
-<!--video: <a href="http://www.youtube.com/watch?v=SRz750EdjfY">http://www.youtube.com/watch?v=SRz750EdjfY</a>
-[![video](http://img.youtube.com/vi/SRz750EdjfY/maxresdefault.jpg)](http://www.youtube.com/watch?v=SRz750EdjfY)-->
+video: <a href="http://www.youtube.com/watch?v=PkDkCJyZ2go">http://www.youtube.com/watch?v=PkDkCJyZ2go</a>
+[![video](http://img.youtube.com/vi/PkDkCJyZ2go/maxresdefault.jpg)](http://www.youtube.com/watch?v=PkDkCJyZ2go)
 
