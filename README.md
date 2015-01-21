@@ -1,4 +1,4 @@
-Openframeworks Raspberry PI GPIO interfaces, I2C protocol, IO pin read/write.
+Openframeworks Raspberry PI GPIO interfaces, SPI (Serial Peripheral Interface), I2C (Inter Integrated Circuit), IO Pin read/write.
 
 Example GPIO read/write stepper rotation:
 	<ul>
@@ -35,7 +35,7 @@ video: <a href="http://www.youtube.com/watch?v=SRz750EdjfY">http://www.youtube.c
 [![video](http://img.youtube.com/vi/SRz750EdjfY/maxresdefault.jpg)](http://www.youtube.com/watch?v=SRz750EdjfY)
 <br><br>
 
-Example GPIO SPI read/write
+Example GPIO SPI add Analog pin MCP3008 potentiometer:
 	<ul>
 	<li>Raspberry</li>
 	<li>MCP3008</li>
