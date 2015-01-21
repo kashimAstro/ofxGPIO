@@ -49,6 +49,9 @@ Example GPIO SPI add Analog pin MCP3008 potentiometer:
 <br>
 fritzing example:
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/spi_mcp_raspberry_bb.jpg)
+MCP3008 8-Channel 10-Bit ADC
+<br>
+![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/mcp3008pin.gif)
 <br>
 video: <a href="http://www.youtube.com/watch?v=PkDkCJyZ2go">http://www.youtube.com/watch?v=PkDkCJyZ2go</a>
 [![video](http://img.youtube.com/vi/PkDkCJyZ2go/maxresdefault.jpg)](http://www.youtube.com/watch?v=PkDkCJyZ2go)
