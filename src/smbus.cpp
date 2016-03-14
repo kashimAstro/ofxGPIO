@@ -33,7 +33,7 @@ __s32 i2c_smbus_access(int file, char read_write, __u8 command,
 
 __s32 i2c_smbus_write_quick(int file, __u8 value)
 {
-    return i2c_smbus_access(file, value, 0, I2C_SMBUS_QUICK, NULL);
+    return i2c_smbus_access(file, value, 0, I2C_SMBUS_QUICK, nullptr);
 }
 
 __s32 i2c_smbus_read_byte(int file)
@@ -51,7 +51,7 @@ __s32 i2c_smbus_read_byte(int file)
 __s32 i2c_smbus_write_byte(int file, __u8 value)
 {
     return i2c_smbus_access(file, I2C_SMBUS_WRITE, value,
-                I2C_SMBUS_BYTE, NULL);
+                I2C_SMBUS_BYTE, nullptr);
 }
 
 __s32 i2c_smbus_read_byte_data(int file, __u8 command)

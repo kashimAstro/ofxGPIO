@@ -36,7 +36,7 @@ void I2CBus::writeByte(uint8_t command, uint8_t data)
 	}
 }
 
-uint8_t I2CBus::readByte(uint8_t command)
+uint16_t I2CBus::readByte(uint8_t command)
 {
 	int result = i2c_smbus_read_byte_data(fd, command);
 	if (result == -1)
@@ -46,17 +46,18 @@ uint8_t I2CBus::readByte(uint8_t command)
 	return result;
 }
 
-int I2CBus::tryReadByte(uint8_t command)
+uint16_t I2CBus::tryReadByte(uint8_t command)
 {
 	return i2c_smbus_read_byte_data(fd, command);
 }
 
-void I2CBus::readBlock(uint8_t command, uint8_t size, uint8_t * data)
+uint16_t I2CBus::readBlock(uint8_t command, uint8_t size, uint8_t * data)
 {
 	int result = i2c_smbus_read_i2c_block_data(fd, command, size, data);
 	if (result != size)
 	{
 		ofLog(OF_LOG_ERROR,"Failed to read block from I2C.");
 	}
+	return result;
 }
 

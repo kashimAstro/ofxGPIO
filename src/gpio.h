@@ -2,9 +2,9 @@
 #define GPIO_H
 
 #include <string>
+
 using namespace std;
-class GPIO
-{
+class GPIO {
 	public:
 	    GPIO();
 	    GPIO(string x);
