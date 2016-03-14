@@ -3,7 +3,6 @@ Openframeworks Raspberry PI GPIO interfaces, SPI (Serial Peripheral Interface), 
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/Raspberry-Pi-logo.jpg)
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/Raspberry-Pi-GPIO-pinouts.png)
 
-
 Example simple Button Read state:
 	<ul>
 		<li>Raspberry pi (2/3/Zero/A/A+/B+)
@@ -21,6 +20,13 @@ Example simple Led Blink:
 fritzing example:
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/led_example.png)
 
+Example i2c multiple byte read MPU6050:
+	<ul>
+		<li>Raspberry pi (2/3/Zero/A/A+/B+)
+		<li>MPU6050</li>
+	</ul>
+fritzing example:
+![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/mpu6050_example.png)
 
 Example GPIO read/write stepper rotation:
 	<ul>
