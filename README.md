@@ -20,6 +20,15 @@ Example simple Led Blink:
 fritzing example:
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/led_example.png)
 
+Example simple Relay on / off Light:
+	<ul>
+		<li>Raspberry pi (2/3/Zero/A/A+/B+)
+		<li>Relay 5v</li>
+		<li>Lamp</li>
+	</ul>
+fritzing example:
+![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/relaylight_example.png)
+
 Example i2c multiple byte read MPU6050:
 	<ul>
 		<li>Raspberry pi (2/3/Zero/A/A+/B+)
@@ -27,6 +36,14 @@ Example i2c multiple byte read MPU6050:
 	</ul>
 fritzing example:
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/mpu6050_example.png)
+
+Example Led Matrix8x8:
+        <ul>
+                <li>Raspberry pi (2/3/Zero/A/A+/B+)
+                <li>Led Matrix</li>
+        </ul>
+fritzing example:
+![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/led_matrix_i2c.png)
 
 Example GPIO read/write stepper rotation:
 	<ul>
@@ -79,4 +96,10 @@ MCP3008 8-Channel 10-Bit ADC
 <br>
 video: <a href="http://www.youtube.com/watch?v=PkDkCJyZ2go">http://www.youtube.com/watch?v=PkDkCJyZ2go</a>
 [![video](http://img.youtube.com/vi/PkDkCJyZ2go/maxresdefault.jpg)](http://www.youtube.com/watch?v=PkDkCJyZ2go)
+
+<BR>
+for i2c and SPI configuration visit this page:
+
+https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-spi
+https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
 

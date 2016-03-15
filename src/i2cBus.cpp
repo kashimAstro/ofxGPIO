@@ -27,12 +27,30 @@ void I2CBus::addressSet(uint8_t address)
 	}
 }
 
+void I2CBus::write(uint8_t command)
+{
+	int result = i2c_smbus_write_byte(fd, command);
+	if (result == -1)
+	{
+		ofLog(OF_LOG_ERROR,"Failed to write byte to I2C.");
+	}
+}
+
 void I2CBus::writeByte(uint8_t command, uint8_t data)
 {
 	int result = i2c_smbus_write_byte_data(fd, command, data);
 	if (result == -1)
 	{
 		ofLog(OF_LOG_ERROR,"Failed to write byte to I2C.");
+	}
+}
+
+void I2CBus::writeBlockData(uint8_t command, uint8_t size, __u8 * data)
+{
+        int result = i2c_smbus_write_i2c_block_data(fd, command, size, data);
+	if (result == -1)
+	{
+		ofLog(OF_LOG_ERROR,"Failed to write block data byte to I2C.");
 	}
 }
 

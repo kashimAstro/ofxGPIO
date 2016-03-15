@@ -1,5 +1,6 @@
 #include <sys/ioctl.h>
 #include <stdint.h>
+#include <linux/types.h>
 #include "ofMain.h"
 
 #define MPU_ACCEL_XOUT1 0x3b
@@ -27,7 +28,9 @@ class I2CBus {
 		I2CBus(const char * deviceName);
 		~I2CBus();
 		void addressSet(uint8_t address);
+		void write(uint8_t command);
 		void writeByte(uint8_t command, uint8_t data);
+		void writeBlockData(uint8_t command, uint8_t size, __u8 * data);
 		uint16_t readByte(uint8_t command);
 		uint16_t tryReadByte(uint8_t command);
 		uint16_t readBlock(uint8_t command, uint8_t size, uint8_t * data);
