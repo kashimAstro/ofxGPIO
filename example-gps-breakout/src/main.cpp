@@ -4,14 +4,18 @@
 
 class noWin : public ofBaseApp{
         public:
-
+		ReadRawData gps;
+		
 		void setup(){
+			gps.start("/dev/ttyAMA0");
 		}
 		
 		void update(){
+
 		}
 
 		void exit(){
+			gps.stop();
 		}
 
 };
