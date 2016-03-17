@@ -2,13 +2,10 @@
 #include "ofAppNoWindow.h"
 #include "ofxGPIO.h"
 #include <fstream>
-#include <curl/curl.h>
-#include <boost/iostreams/stream.hpp>
-#include "XXcurl.h"
 //sample map static
 //https://maps.googleapis.com/maps/api/staticmap?zoom=5&size=250x250&sensor=false&maptype=roadmap&markers=color:red|39.926586,116.405640
 
-class noWin : public ofBaseApp{
+class ofApp : public ofBaseApp{
         public:
 		GPSSerial gps;
 		float time,lati,longi,alti;
@@ -66,5 +63,5 @@ int main( ){
         //ofAppNoWindow window;
 	//ofSetupOpenGL(&window, 0,0, OF_WINDOW);
 	ofSetupOpenGL(1024,700, OF_FULLSCREEN);
-	ofRunApp( new noWin() );
+	ofRunApp( new ofApp() );
 }
