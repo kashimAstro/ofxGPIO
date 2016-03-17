@@ -8,32 +8,14 @@
 class ofApp : public ofBaseApp{
         public:
 		GPSSerial gps;
+		GETGoogleImage maps;
 		float time,lati,longi,alti;
+		float tmplati,tmplongi;
 		string raw;
-
-		string urlStaticMap(float latitude, float longitude, int zoom=10,
-				    int w=350, int h=350, string type="roadmap", string color = "green") {
-			stringstream ss;
-			ss << "https://maps.googleapis.com/maps/api/staticmap?zoom=";
-			ss << ofToString( zoom );
-			ss << "&size="+ ofToString(w)+"x"+ofToString(h);
-			ss << "&sensor=false&maptype=";
-			ss << type;
-			ss << "&markers=color:"+color+"|";
-			ss << ofToString(latitude)+","+ofToString(longitude);
-			return ss.str().c_str();
-		}
+		ofImage image;
 
 		void setup(){
 			gps.start("/dev/ttyAMA0",9600);
-			ofHttpRequest req(urlStaticMap(39.926586,116.405640), "map");
-			ofBuffer buf;
-			int status=0;
-			string error;
-			ofHttpResponse res(req,buf,status,error);
-			ofLog()<<"status:"<<status;
-			ofLog()<<"error:"<<error;
-			ofLog()<<"size-buffer:"<<buf.size();
 		}
 		
 		void update(){
@@ -42,10 +24,17 @@ class ofApp : public ofBaseApp{
 	        	longi = gps.getLongitude();
 			alti  = gps.getAltitude();
 			raw   = gps.getRawData();
+			if( lati == tmplati && longi == tmplongi ) {
+				string s = maps.request(lati,longi,10,700,700,"roadmap","orange");
+				if(s!="") image.load(s);
+			}
+			tmplati = lati;
+			tmplongi = longi;
 		}
 
 		void draw(){
 			ofBackground(100);
+			image.draw(100,100);
 			ofDrawBitmapStringHighlight("Time:"+ofToString(time),10,10);
 			ofDrawBitmapStringHighlight("Latitude:"+ofToString(lati),10,40);
 			ofDrawBitmapStringHighlight("Longitude:"+ofToString(longi),10,80);

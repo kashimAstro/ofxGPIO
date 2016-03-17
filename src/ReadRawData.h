@@ -116,7 +116,7 @@ class GPSSerial : public ofThread {
 	                            }
 	                        }
 			    }
-			    ofSleepMillis(100);
+			    ofSleepMillis(sleep);
 			}
 		}
 
