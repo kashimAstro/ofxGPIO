@@ -7,11 +7,15 @@ class noWin : public ofBaseApp{
 		ReadRawData gps;
 		
 		void setup(){
-			gps.start("/dev/ttyAMA0");
+			gps.start("/dev/ttyAMA0",1000);
 		}
 		
 		void update(){
-
+		  ofLog()<<"Time:"<<gps.getTime();
+		  ofLog()<<"Latitude:"<<gps.getLatitude();
+	          ofLog()<<"Longitude:"<<gps.getLongitude();
+		  ofLog()<<"Altitude:"<<gps.getAltitude();
+		  ofLog()<<"RawData:"<<gps.getRawData();
 		}
 
 		void exit(){
