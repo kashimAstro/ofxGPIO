@@ -44,6 +44,87 @@
 	
 */
 
+class GPSSerial : public ofThread {
+	public:
+		ofSerial serial;
+	        vector<string> token;
+		string rawdata;
+		float latitude;
+		float longitude;
+		float altitude;
+		float time;
+		int sleep;
+
+		double convertDegMinToDecDeg (float degMin) {
+		    double min = 0.0;
+		    double decDeg = 0.0;
+		    min = fmod((double)degMin, 100.0);
+		    degMin = (int) ( degMin / 100 );
+		    decDeg = degMin + ( min / 60 );
+		    return decDeg;
+		}
+
+		float getLatitude(){
+			return latitude;
+		}
+
+		float getLongitude(){
+			return longitude;
+		}
+
+		float getTime(){
+			return longitude;
+		}
+
+		float getAltitude(){
+			return altitude;
+		}
+
+		string getRawData(){
+			return rawdata;
+		}
+
+		void start(string device, int baund, int _sleep=1000){
+			token.push_back("$GPGGA");
+		        token.push_back("$GPGSA");
+		        token.push_back("$GPRMC");
+		        token.push_back("$GPVTG");
+		        token.push_back("$GPGLL");
+
+			serial.setup(device,baund);
+			startThread(true);
+			sleep = _sleep;
+
+		}
+
+		void threadedFunction(){
+			while(isThreadRunning()) {
+			    if(serial.available()){          
+				unsigned char ned[1024];
+				memset(ned, 0, 1024);
+				serial.readBytes(ned, 1024);
+				string Data = (char*) ned;
+				rawdata=Data;
+                        	std::size_t found = rawdata.find(token[0]);
+	                        if (found!=std::string::npos){
+        	                    vector<string> data = ofSplitString(rawdata,",");
+	                            if(data.size()>0){
+        	                            time      = ( (data[1]  != "") ? ofToFloat(data[1]) : 0 );
+	                                    latitude  = ( (data[2]  != "") ? convertDegMinToDecDeg(ofToFloat(data[2]))  : 0 );
+	                                    longitude = ( (data[4]  != "") ? convertDegMinToDecDeg(ofToFloat(data[4]))  : 0 );
+	                                    altitude  = ( (data[10] != "") ? convertDegMinToDecDeg(ofToFloat(data[10])) : 0 );
+	                            }
+	                        }
+			    }
+			    ofSleepMillis(100);
+			}
+		}
+
+		void stop(){
+			stopThread();
+		}
+};
+
 class ReadRawData : public ofThread {
     public:
         ifstream stream;
@@ -63,7 +144,7 @@ class ReadRawData : public ofThread {
 	    token.push_back("$GPRMC");
 	    token.push_back("$GPVTG");
 	    token.push_back("$GPGLL");
-            startThread(true, false);
+            startThread(true);
         }
 
 	double convertDegMinToDecDeg (float degMin) {
@@ -98,16 +179,20 @@ class ReadRawData : public ofThread {
         void threadedFunction() {
             while(isThreadRunning()) {
                 string res;
+		ofLog()<<"***************";
                 while (stream >> res) {
 			rawdata=res;
+                        ofLog()<<res;
+
 			std::size_t found = res.find(token[0]);
 			if (found!=std::string::npos){
-			    ofLog()<<res;
 			    vector<string> data = ofSplitString(res,",");
-	                    time = ofToFloat(data[1]);
-			    latitude = convertDegMinToDecDeg(ofToFloat(data[2]));
-			    longitude = convertDegMinToDecDeg(ofToFloat(data[4]));
-			    altitude = convertDegMinToDecDeg(ofToFloat(data[10]));
+			    if(data.size()>0){
+		                    time      = ( (data[1]  != "") ? ofToFloat(data[1]) : 0 );
+				    latitude  = ( (data[2]  != "") ? convertDegMinToDecDeg(ofToFloat(data[2]))  : 0 );
+				    longitude = ( (data[4]  != "") ? convertDegMinToDecDeg(ofToFloat(data[4]))  : 0 );
+				    altitude  = ( (data[10] != "") ? convertDegMinToDecDeg(ofToFloat(data[10])) : 0 );
+			    }
 			}
                 }
 		ofSleepMillis(sleep);
