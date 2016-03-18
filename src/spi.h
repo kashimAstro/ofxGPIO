@@ -16,7 +16,6 @@ public:
     SPI(std::string devspi, unsigned char spiMode, unsigned int spiSpeed, unsigned char spibitsPerWord);
     ~SPI();
     int spiWriteRead( unsigned char *data, int length);
- 
 private:
     unsigned char mode;
     unsigned char bitsPerWord;

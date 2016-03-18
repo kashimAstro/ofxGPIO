@@ -60,13 +60,11 @@ int SPI::spiClose(){
 }
  
 int SPI::spiWriteRead( unsigned char *data, int length){
- 
   struct spi_ioc_transfer spi[length];
   int i = 0;
   int retVal = -1; 
- 
+	 
   for (i = 0 ; i < length ; i++){
- 
     spi[i].tx_buf        = (unsigned long)(data + i); // transmit from "data"
     spi[i].rx_buf        = (unsigned long)(data + i) ; // receive into "data"
     spi[i].len           = sizeof(*(data + i)) ;
@@ -74,17 +72,14 @@ int SPI::spiWriteRead( unsigned char *data, int length){
     spi[i].speed_hz      = this->speed ;
     spi[i].bits_per_word = this->bitsPerWord ;
     spi[i].cs_change = 0;
-}
- 
- retVal = ioctl (this->spifd, SPI_IOC_MESSAGE(length), &spi) ;
- 
- if(retVal < 0){
+  }
+	 
+  retVal = ioctl (this->spifd, SPI_IOC_MESSAGE(length), &spi) ;
+  if(retVal < 0){
     ofLog(OF_LOG_ERROR,"Problem transmitting spi data..ioctl");
     exit(1);
- }
- 
-return retVal;
- 
+  }
+  return retVal;	 
 }
  
 SPI::SPI(){
