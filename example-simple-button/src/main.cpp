@@ -4,23 +4,23 @@
 
 class noWin : public ofBaseApp{
         public:
-		GPIO* gpio17;
+		GPIO gpio17;
 		string state_button;
 
 		void setup(){
-			gpio17  = new GPIO("17");
-			gpio17->export_gpio();
-                        gpio17->setdir_gpio("in");
+			gpio17.setup("17");
+			gpio17.export_gpio();
+                        gpio17.setdir_gpio("in");
 		}
 		
 		void update(){
-			gpio17->getval_gpio(state_button);
+			gpio17.getval_gpio(state_button);
 			ofLog()<<state_button;
 			usleep(50000);
 		}
 
 		void exit(){
-			gpio17->unexport_gpio();
+			gpio17.unexport_gpio();
 		}
 };
 

@@ -8,6 +8,7 @@ class GPIO {
 	public:
 	    GPIO();
 	    GPIO(string x);
+	    void setup(string x);
 	    int export_gpio();
 	    int unexport_gpio();
 	    int setdir_gpio(string dir);

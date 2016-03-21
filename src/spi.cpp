@@ -102,6 +102,16 @@ SPI::SPI(std::string devspi, unsigned char spiMode, unsigned int spiSpeed, unsig
  
 }
  
+void SPI::setup(std::string devspi, unsigned char spiMode, unsigned int spiSpeed, unsigned char spibitsPerWord){
+    this->mode = spiMode ;
+    this->bitsPerWord = spibitsPerWord;
+    this->speed = spiSpeed;
+    this->spifd = -1;
+ 
+    this->spiOpen(devspi);
+ 
+}
+
 SPI::~SPI(){
     this->spiClose();
 }

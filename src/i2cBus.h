@@ -27,6 +27,7 @@ class I2CBus {
 	public:
 		I2CBus(const char * deviceName);
 		~I2CBus();
+		void setup(const char * deviceName);
 		void addressSet(uint8_t address);
 		void write(uint8_t command);
 		void writeByte(uint8_t command, uint8_t data);

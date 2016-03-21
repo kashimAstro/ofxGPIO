@@ -18,6 +18,15 @@ I2CBus::~I2CBus()
 	close(fd);
 }
 
+void I2CBus::setup(const char * deviceName)
+{
+	fd = open(deviceName, O_RDWR);
+	if (fd == -1)
+	{
+		ofLog(OF_LOG_ERROR,"Failed to open I2C device.");
+	}
+}
+
 void I2CBus::addressSet(uint8_t address)
 {
 	int result = ioctl(fd, I2C_SLAVE, address);

@@ -16,6 +16,11 @@ GPIO::GPIO(string gnum)
     this->gpionum = gnum;
 }
 
+void GPIO::setup(string gnum)
+{
+    this->gpionum = gnum;
+}
+
 int GPIO::export_gpio()
 {
     string export_str = "/sys/class/gpio/export";
