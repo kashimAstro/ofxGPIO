@@ -125,37 +125,37 @@ https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configurin
 https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
 
 <br><br><br>
-<b><p>Datasheet integrated list:</p></b>
+<b><h1>Datasheet integrated list:</h1></b>
 
-<b>Drive motor:</b>
+<b>Drive motor:</b><br>
 http://www.ti.com/lit/ds/symlink/l293.pdf
 http://www.ti.com/lit/ds/symlink/sn754410.pdf
 http://www.ti.com/lit/ds/symlink/uln2003a.pdf
 http://www.st.com/content/ccc/resource/technical/document/datasheet/f3/6e/c8/64/4d/b3/4e/38/CD00001244.pdf/files/CD00001244.pdf/jcr:content/translations/en.CD00001244.pdf
 <br><br>
 
-<b>Motor stepper Bipolar / Unipolar:</b>
+<b>Motor stepper Bipolar / Unipolar:</b><br>
 http://motion.schneider-electric.com/downloads/datasheets/14_mtr.pdf
 http://www.mitsumi.co.jp/latest/Catalog/pdf/motor_m35sp_9_e.pdf
 <br><br>
 
-<b>A/D Converters:</b>
+<b>A/D Converters:</b><br>
 https://cdn-shop.adafruit.com/datasheets/MCP3008.pdf
 http://ww1.microchip.com/downloads/en/DeviceDoc/21295C.pdf
 <br><br>
 
-<b>ATmega48A/PA/88A/PA/168A/PA/328/P:</b>
+<b>ATmega48A/PA/88A/PA/168A/PA/328/P:</b><br>
 http://www.atmel.com/images/Atmel-8271-8-bit-AVR-Microcontroller-ATmega48A-48PA-88A-88PA-168A-168PA-328-328P_datasheet_Complete.pdf
 <br><br>
 
-<b>MPU-6000 / MPU-6050:</b>
+<b>MPU-6000 / MPU-6050:</b><br>
 https://www.cdiweb.com/datasheets/invensense/MPU-6050_DataSheet_V3%204.pdf
 <br><br>
 
-<b>Adafruit Ultimate GPS:</b>
+<b>Adafruit Ultimate GPS:</b><br>
 https://cdn-learn.adafruit.com/downloads/pdf/adafruit-ultimate-gps.pdf
 <br><br>
 
-<b>Adafruit LED Backpacks:</b>
+<b>Adafruit LED Backpacks:</b><br>
 https://cdn-learn.adafruit.com/downloads/pdf/adafruit-led-backpack.pdf
 
