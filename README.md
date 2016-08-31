@@ -128,19 +128,19 @@ https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configurin
 <b><h1>Datasheet integrated list:</h1></b>
 
 <b>Drive motor:</b><br>
-http://www.ti.com/lit/ds/symlink/l293.pdf
-http://www.ti.com/lit/ds/symlink/sn754410.pdf
-http://www.ti.com/lit/ds/symlink/uln2003a.pdf
+http://www.ti.com/lit/ds/symlink/l293.pdf<br>
+http://www.ti.com/lit/ds/symlink/sn754410.pdf<br>
+http://www.ti.com/lit/ds/symlink/uln2003a.pdf<br>
 http://www.st.com/content/ccc/resource/technical/document/datasheet/f3/6e/c8/64/4d/b3/4e/38/CD00001244.pdf/files/CD00001244.pdf/jcr:content/translations/en.CD00001244.pdf
 <br><br>
 
 <b>Motor stepper Bipolar / Unipolar:</b><br>
-http://motion.schneider-electric.com/downloads/datasheets/14_mtr.pdf
+http://motion.schneider-electric.com/downloads/datasheets/14_mtr.pdf<br>
 http://www.mitsumi.co.jp/latest/Catalog/pdf/motor_m35sp_9_e.pdf
 <br><br>
 
 <b>A/D Converters:</b><br>
-https://cdn-shop.adafruit.com/datasheets/MCP3008.pdf
+https://cdn-shop.adafruit.com/datasheets/MCP3008.pdf<br>
 http://ww1.microchip.com/downloads/en/DeviceDoc/21295C.pdf
 <br><br>
 
@@ -158,4 +158,10 @@ https://cdn-learn.adafruit.com/downloads/pdf/adafruit-ultimate-gps.pdf
 
 <b>Adafruit LED Backpacks:</b><br>
 https://cdn-learn.adafruit.com/downloads/pdf/adafruit-led-backpack.pdf
+<br><br>
+
+<b>EEPROM</b><br>
+http://www.bucek.name/pdf/24c16.pdf
+http://www.st.com/content/ccc/resource/technical/document/datasheet/5c/df/52/a5/15/f2/48/bd/CD00259166.pdf/files/CD00259166.pdf/jcr:content/translations/en.CD00259166.pdf
+
 
