@@ -5,8 +5,8 @@
 
 class SPI2 { 
     public:
-	char       *spiDev0 = "/dev/spidev0.0" ;
-	char       *spiDev1 = "/dev/spidev0.1" ;
+	string      spiDev0 = "/dev/spidev0.0" ;
+	string      spiDev1 = "/dev/spidev0.1" ;
 	uint8_t     spiMode   = 0 ;
 	uint8_t     spiBPW    = 8 ;
 	uint16_t    spiDelay  = 0;
@@ -37,8 +37,15 @@ class SPI2 {
 
 	  channel &= 1 ;
 
-	  if ((fd = open (channel == 0 ? spiDev0 : spiDev1, O_RDWR)) < 0)
-	    return -1 ;
+	  if ((fd = open (channel == 0 ? spiDev0.c_str() : spiDev1.c_str(), O_RDWR)) < 0)
+	  {
+	     #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+                  ofLog()<<"Failed to setup SPI!";
+             #else
+                  std::cout<<"Failed to setup SPI!"<<std::endl;
+             #endif   
+	     return -1 ;
+	  }
 
 	  spiSpeeds [channel] = speed ;
 	  spiFds    [channel] = fd ;

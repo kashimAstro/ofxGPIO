@@ -1,7 +1,10 @@
 #include <sys/ioctl.h>
 #include <stdint.h>
 #include <linux/types.h>
-#include "ofMain.h"
+#include <iostream>
+#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+	#include "ofMain.h"
+#endif
 
 #define MPU_ACCEL_XOUT1 0x3b
 #define MPU_ACCEL_XOUT2 0x3c

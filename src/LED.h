@@ -1,4 +1,6 @@
-#include "ofMain.h"
+#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+	#include "ofMain.h"
+#endif
 
 class LED {
 	public:
@@ -7,9 +9,20 @@ class LED {
 	void setupAPA102(int port=0, int speed=8000000){
 		int state = spi.setup(port,speed);
                 if(state < 0)
-                    ofLog()<<"Failed to setup SPI!";
-                else
-                    ofLog()<<"Open setup SPI!";
+		{
+       		    #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+	             	ofLog()<<"Failed to setup SPI!";
+		    #else
+			std::cout<<"Failed to setup SPI!"<<std::endl;
+		    #endif
+		}
+                else{
+		    #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+                    	ofLog()<<"Open setup SPI!";
+		    #else
+			std::cout<<"Open setup SPI!"<<std::endl;
+		    #endif
+		}
 	}
 
 	void setAPA102(int numLed, vector<ofVec3f> colors, int BRIGHTNESS){
@@ -48,7 +61,9 @@ class LED {
 			spi.readWrite(0, (unsigned char*)buffer0, 1);
 		}
 		for(a=0; a<numLed; a++){
-			ofLog()<<a;
+			#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+				ofLog()<<a;
+			#endif
 			buffer1[0]=(1 & 0b00011111) | 0b11100000;
 			buffer1[1]=(uint8_t)(1);  //green
 			buffer1[2]=(uint8_t)(1);  //blue
@@ -59,7 +74,11 @@ class LED {
 			buffer0[0]=0b11111111;
 			spi.readWrite(0, (unsigned char*)buffer0, 1);
 		}
-		ofExit(0);
+		#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+			ofExit(0);
+		#else 
+			exit(0);
+		#endif
 	}
 
 };

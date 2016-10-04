@@ -21,43 +21,72 @@ int xopen(std::string devspi){
     int statusVal = -1;
     this->spifd = open(devspi.c_str(), O_RDWR);
     if(this->spifd < 0){
-        //ofLog()<<"could not open SPI device";
+        #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+             ofLog()<<"Could not open SPI device!";
+        #else
+             std::cout<<"Could not open SPI device!"<<std::endl;
+        #endif
         exit(1);
     }
  
     statusVal = ioctl (this->spifd, SPI_IOC_WR_MODE, &(this->mode));
     if(statusVal < 0){
-        //ofLog()<<"Could not set SPIMode (WR)...ioctl fail";
+	#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+             ofLog()<<"Could not set SPIMode (WR)...ioctl fail!";
+        #else
+             std::cout<<"Could not set SPIMode (WR)...ioctl fail!"<<std::endl;
+        #endif
         exit(1);
     }
  
     statusVal = ioctl (this->spifd, SPI_IOC_RD_MODE, &(this->mode));
     if(statusVal < 0) {
-      //ofLog()<<"Could not set SPIMode (RD)...ioctl fail";
+      #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+             ofLog()<<"Could not set SPIMode (RD)...ioctl fail!";
+      #else
+             std::cout<<"Could not set SPIMode (RD)...ioctl fail!"<<std::endl;
+      #endif
       exit(1);
     }
  
     statusVal = ioctl (this->spifd, SPI_IOC_WR_BITS_PER_WORD, &(this->bitsPerWord));
     if(statusVal < 0) {
       //ofLog()<<"Could not set SPI bitsPerWord (WR)...ioctl fail";
+      #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+             ofLog()<<"Could not set SPI bitsPerWord (WR)...ioctl fail!";
+      #else
+             std::cout<<"Could not set SPI bitsPerWord (WR)...ioctl fail!"<<std::endl;
+      #endif
       exit(1);
     }
  
     statusVal = ioctl (this->spifd, SPI_IOC_RD_BITS_PER_WORD, &(this->bitsPerWord));
     if(statusVal < 0) {
-      //ofLog()<<"Could not set SPI bitsPerWord(RD)...ioctl fail";
+      #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+             ofLog()<<"Could not set SPI bitsPerWord(RD)...ioctl fail!";
+      #else
+             std::cout<<"Could not set SPI bitsPerWord(RD)...ioctl fail!"<<std::endl;
+      #endif
       exit(1);
     }  
  
     statusVal = ioctl (this->spifd, SPI_IOC_WR_MAX_SPEED_HZ, &(this->speed));    
     if(statusVal < 0) {
-      //ofLog()<<"Could not set SPI speed (WR)...ioctl fail";
+      #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+             ofLog()<<"Could not set SPI speed (WR)...ioctl fail!";
+      #else
+             std::cout<<"Could not set SPI speed (WR)...ioctl fail!"<<std::endl;
+      #endif
       exit(1);
     }
  
     statusVal = ioctl (this->spifd, SPI_IOC_RD_MAX_SPEED_HZ, &(this->speed));    
     if(statusVal < 0) {
-      //ofLog()<<"Could not set SPI speed (RD)...ioctl fail";
+      #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+             ofLog()<<"Could not set SPI speed (RD)...ioctl fail!";
+      #else
+             std::cout<<"Could not set SPI speed (RD)...ioctl fail!"<<std::endl;
+      #endif
       exit(1);
     }
     return statusVal;
@@ -67,7 +96,12 @@ int xclose(){
     int statusVal = -1;
     statusVal = close(this->spifd);
     if(statusVal < 0) {
-      //ofLog()<<"Could not close SPI device";
+      #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+             ofLog()<<"Close Device!";
+      #else
+             std::cout<<"Close Device!"<<std::endl;
+      #endif
+
       exit(1);
     }
     return statusVal;
@@ -89,7 +123,11 @@ int readWrite( unsigned char *data){//, int len){
  }
  retVal = ioctl (this->spifd, SPI_IOC_MESSAGE(3), &spi) ;
  if(retVal < 0){
-    //ofLog()<<"Problem transmitting spi data..ioctl";
+      #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+             ofLog()<<"Problem transmitting spi data..ioctl!";
+      #else
+             std::cout<<"Problem transmitting spi data..ioctl!"<<std::endl;
+      #endif
     exit(1);
  }
  return retVal; 
