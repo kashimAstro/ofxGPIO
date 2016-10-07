@@ -4,7 +4,6 @@ Openframeworks Raspberry PI GPIO interfaces, SPI (Serial Peripheral Interface), 
 <img src="screen/dVBS2AwaDFGa4.gif"/><br>  
 <img src="screen/Uqvo9WQ8X1RTO.gif"/><br>
 <img src="screen/3SJ2Lc9EO9KSs.gif"/><br>
-<img src="screen/mcp3008pin.gif"/><br>
 <img src="screen/uRLtiGKjNqFwY.gif"/><br>
 
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-logo.jpg)
