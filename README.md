@@ -1,5 +1,9 @@
 Openframeworks Raspberry PI GPIO interfaces, SPI (Serial Peripheral Interface), I2C (Inter Integrated Circuit), IO Pin read/write.
 
+
+<iframe src="//giphy.com/embed/14mtz6kkrVLUPe" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+<iframe src="//giphy.com/embed/3SJ2Lc9EO9KSs" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-logo.jpg)
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-GPIO-pinouts.png)
 
