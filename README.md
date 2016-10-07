@@ -2,8 +2,6 @@ Openframeworks Raspberry PI GPIO interfaces, SPI (Serial Peripheral Interface), 
 
 ![](http://i.giphy.com/14mtz6kkrVLUPe.gif)
 
-![](http://i.giphy.com/dVBS2AwaDFGa4.gif)
-
 
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-logo.jpg)
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-GPIO-pinouts.png)
