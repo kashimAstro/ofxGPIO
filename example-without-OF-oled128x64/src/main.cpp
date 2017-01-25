@@ -10,12 +10,33 @@
 #define COMMAND_WHITE_BACKGROUND 0xA7
 #define COMMAND_MIRROR_VERTICAL 0xA0 | 0x1
 #define COMMAND_MIRROR_HORIZONTAL 0xC8
+#define COMMAND_CHARGE_PUMP_SETTING     0x8d
+#define COMMAND_CHARGE_PUMP_ENABLE 0x14
+#define COMMAND_DISPLAY_OFF 0xAE
+#define COMMAND_DISPLAY_ON 0xAF
+#define COMMAND_SET_BRIGHTNESS 0x81
 #define PAGE_ADDRESSING 0x02
 
 #define DATA 0x40
 #define CMD  0x80
 
 static I2CBus * bus;
+
+void setDisplayOff()
+{
+        bus->writeByte(CMD,COMMAND_DISPLAY_OFF);
+}
+
+void setDisplayOn()
+{
+        bus->writeByte(CMD,COMMAND_DISPLAY_ON);
+}
+
+void setBrightness(int Brightness)
+{
+        bus->writeByte(CMD,COMMAND_SET_BRIGHTNESS);
+        bus->writeByte(CMD,Brightness);
+}
 
 void setPageMode()
 {
@@ -46,23 +67,32 @@ void setCursor(int x, int y)
         bus->writeByte(CMD,0xB0 + y);
 }
 
-void drawBitmap(int *Bitmaparray, int Width=WIDTH_OLED, int Height=HEIGHT_OLED)
+void drawBitmap(int *Bitmaparray, int x, int y, int w, int h)
 {
-	for(int i = 0; i < Width * 8 * Height; i++)
+	setCursor(x,y);
+        int Column = 0;
+	for(int i = 0; i < w * 8 * h; i++)
 	{
 		bus->writeByte(DATA,Bitmaparray[i]);
+		if (++Column == w * 8)
+                {
+                        Column = 0;
+                        setCursor(x, ++y);
+                }
 	}
 }
 
 void clearDisplay()
 {
-	for(int X = 0; X < WIDTH_OLED; X++)
-	{
-		for(int Y = 0; Y < HEIGHT_OLED; Y++) 
-		{
-			bus->writeByte(DATA,0);
-		}
-	}
+	for(int x = 0; x < 8; x++)
+        {
+                setCursor(0, x);
+                for(int y = 0; y < 128; y++)
+                {
+                        bus->writeByte(DATA,0);
+                }
+        }
+        setCursor(0, 0);
 }
 
 void printChar(char Char)
@@ -121,8 +151,13 @@ int main(int argc, char *argv[])
 		srand (time(NULL));
 
 		bus = new I2CBus("/dev/i2c-1");
-       		bus->addressSet(OLED);
-		setWhiteBackground();
+		bus->addressSet(OLED);
+		bus->writeByte(CMD,COMMAND_CHARGE_PUMP_SETTING);
+	        bus->writeByte(CMD,COMMAND_CHARGE_PUMP_ENABLE);
+		//setWhiteBackground();
+	        //setPageMode();
+	        clearDisplay();
+		//setDisplayOn();
 
 		string ar = argv[1];
 		if(ar == "rand")
@@ -147,8 +182,7 @@ int main(int argc, char *argv[])
 		}
 		if(ar == "bitmap")
 		{
-			setCursor(0,0);
-			drawBitmap(Bitmap,11,11);
+			drawBitmap(Bitmap,0, 0, 16, 8);
 		}
 		if(ar == "bgblack")
 		{
