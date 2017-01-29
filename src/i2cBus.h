@@ -31,10 +31,10 @@ class I2CBus {
 		I2CBus(const char * deviceName);
 		~I2CBus();
 		void setup(const char * deviceName);
-		void addressSet(uint8_t address);
-		void write(uint8_t command);
-		void writeByte(uint8_t command, uint8_t data);
-		void writeBlockData(uint8_t command, uint8_t size, __u8 * data);
+		int addressSet(uint8_t address);
+		int write(uint8_t command);
+		int writeByte(uint8_t command, uint8_t data);
+		int writeBlockData(uint8_t command, uint8_t size, __u8 * data);
 		uint16_t readByte(uint8_t command);
 		uint16_t tryReadByte(uint8_t command);
 		uint16_t readBlock(uint8_t command, uint8_t size, uint8_t * data);

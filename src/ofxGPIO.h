@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <vector>
 
+//OF tool
 #ifdef COMPILE_WITHOUT_OPENFRAMEWORKS
 	struct ofVec3f {
 		float x;
@@ -17,14 +18,17 @@
 	};
 #endif
 
-//core
+//log color
+#include "LogHighLight.h"
+
+//core low level
 #include "gpio.h"
 #include "i2cBus.h"
-//#include "spi.h" //old 
 #include "SPI2.h"
 #include "rpiPWM1.h"
 
-//custom
+//core high level
+#include "kalman.h"
 #include "MCP.h"
 #include "font.h"
 #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS 
@@ -33,3 +37,5 @@
 #endif
 #include "LED.h"
 #include "OLED.h"
+
+using namespace LogHighLight;

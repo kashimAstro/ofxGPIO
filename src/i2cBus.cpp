@@ -36,7 +36,7 @@ void I2CBus::setup(const char * deviceName)
 	}
 }
 
-void I2CBus::addressSet(uint8_t address)
+int I2CBus::addressSet(uint8_t address)
 {
 	int result = ioctl(fd, I2C_SLAVE, address);
 	if (result == -1)
@@ -46,10 +46,12 @@ void I2CBus::addressSet(uint8_t address)
                 #else
                         std::cout<<"Failed to set address."<<std::endl;
                 #endif
+		return -1;
 	}
+	return 1;
 }
 
-void I2CBus::write(uint8_t command)
+int I2CBus::write(uint8_t command)
 {
 	int result = i2c_smbus_write_byte(fd, command);
 	if (result == -1)
@@ -59,11 +61,12 @@ void I2CBus::write(uint8_t command)
                 #else
                         std::cout<<"Failed to write byte to I2C."<<std::endl;
                 #endif
-
+		return -1;
 	}
+	return 1;
 }
 
-void I2CBus::writeByte(uint8_t command, uint8_t data)
+int I2CBus::writeByte(uint8_t command, uint8_t data)
 {
 	int result = i2c_smbus_write_byte_data(fd, command, data);
 	if (result == -1)
@@ -73,11 +76,12 @@ void I2CBus::writeByte(uint8_t command, uint8_t data)
                 #else
                         std::cout<<"Failed to write byte to I2C."<<std::endl;
                 #endif
-
+		return -1;
 	}
+	return 1;
 }
 
-void I2CBus::writeBlockData(uint8_t command, uint8_t size, __u8 * data)
+int I2CBus::writeBlockData(uint8_t command, uint8_t size, __u8 * data)
 {
         int result = i2c_smbus_write_i2c_block_data(fd, command, size, data);
 	if (result == -1)
@@ -87,7 +91,9 @@ void I2CBus::writeBlockData(uint8_t command, uint8_t size, __u8 * data)
                 #else
                         std::cout<<"Failed to write block data byte to I2C."<<std::endl;
                 #endif
+		return -1;
 	}
+	return 1;
 }
 
 uint16_t I2CBus::readByte(uint8_t command)
