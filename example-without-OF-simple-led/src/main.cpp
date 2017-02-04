@@ -10,9 +10,10 @@ int main(){
 	while(1)
 	{
             gpio17.setval_gpio("1");
-            sleep(1000);
+            usleep(1000);
             gpio17.setval_gpio("0");
-            sleep(1000);
+            usleep(1000);
+	    sleep(1);
         }
 
         gpio17.unexport_gpio();
