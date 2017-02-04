@@ -1,4 +1,4 @@
-Openframeworks Raspberry PI GPIO interfaces, SPI (Serial Peripheral Interface), I2C (Inter Integrated Circuit), IO Pin read/write.
+A small library in C++ for the use of GPIO raspberrypi () orangepi () this library is compatible with the toolkit for creative coding <a href="http://openframeworks.cc/">Openframeworks</a>. Interface GPIO: SPI (Serial Peripheral Interface), I2C (Inter Integrated Circuit), IO Pin read/write.<br>
 
 <img src="screen/14mtz6kkrVLUPe.gif"/><img src="screen/dVBS2AwaDFGa4.gif"/><br> <img src="screen/Uqvo9WQ8X1RTO.gif"/><img src="screen/3SJ2Lc9EO9KSs.gif"/><br>
 <img src="screen/uRLtiGKjNqFwY.gif"/><br>
