@@ -14,9 +14,9 @@ class noWin : public ofBaseApp{
 		
 		void update(){
 		        gpio17.setval_gpio("1");
-		        ofSleepMillis(1000);
+		        ofSleepMillis(10);
 		        gpio17.setval_gpio("0");
-		        ofSleepMillis(1000);
+		        ofSleepMillis(10);
 		}
 
 		void exit(){
