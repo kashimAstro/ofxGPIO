@@ -18,8 +18,8 @@ class noWin : public ofBaseApp{
 	                count += 16;
 			if(count>100)
 				count=0;
-			printf("Duty Cycle is %3.2lf \n",pwm.getDutyCycle());
-		        printf("Divisor is %d\n", pwm.getDivisor());
+			printf("Duty Cycle is %3.2lf \n",pwm->getDutyCycle());
+		        printf("Divisor is %d\n", pwm->getDivisor());
 		        usleep(2000000);
                 }
 
