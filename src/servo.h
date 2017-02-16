@@ -1,3 +1,6 @@
+#ifndef SERVO_UTIL
+    #define SERVO_UTIL
+
 #define BCM2708_PERI_BASE       0x20000000
 #define GPIO_BASE               (BCM2708_PERI_BASE + 0x200000) /* GPIO controller */
 #define PWM_BASE                (BCM2708_PERI_BASE + 0x20C000) /* PWM controller */
@@ -40,3 +43,4 @@ class Servo {
 	{
 	}
 };
+#endif

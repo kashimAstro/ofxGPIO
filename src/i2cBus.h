@@ -1,3 +1,6 @@
+#ifndef I2C_BUS
+    #define I2C_BUS
+
 #include <sys/ioctl.h>
 #include <stdint.h>
 #include <linux/types.h>
@@ -46,3 +49,4 @@ class I2CBus {
 		int fd;
 };
 
+#endif

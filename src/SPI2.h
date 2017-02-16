@@ -1,3 +1,6 @@
+#ifndef SPI2_H
+    #define SPI2_H
+
 #include <stdint.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -58,3 +61,4 @@ class SPI2 {
 	  return fd ;
 	}
 };
+#endif

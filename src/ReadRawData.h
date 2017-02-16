@@ -1,4 +1,16 @@
-#include "ofMain.h"
+#ifndef READWRITE_UTIL
+    #define READWRITE_UTIL
+
+#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
+	#include "ofMain.h"
+#else
+	#include <iostream>
+	#include <string>
+	#include <vector>
+	#include <unistd.h>
+	#include <fstream>
+	#include <algorithm>
+#endif
 
 /*
 
@@ -44,6 +56,7 @@
 	
 */
 
+#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS 
 class GPSSerial : public ofThread {
 	public:
 		ofSerial serial;
@@ -124,27 +137,27 @@ class GPSSerial : public ofThread {
 			stopThread();
 		}
 };
+#endif
 
-class ReadRawData : public ofThread {
+class ReadRawData {
     public:
         ifstream stream;
 	vector<string> token;
 	string rawdata;
 	float latitude,longitude,altitude,time;
-	int sleep;
+	int xsleep;
 
         void start(string file, int _sleep){
-	    sleep = _sleep;
+	    xsleep = _sleep;
             stream.open(file);
             if(!stream.is_open()){
-                ofLog()<<"Error open file: "+file;
+                LogHighLight::Log("Error open file: "+file)<<"\n";
             }
 	    token.push_back("$GPGGA");
 	    token.push_back("$GPGSA");
 	    token.push_back("$GPRMC");
 	    token.push_back("$GPVTG");
 	    token.push_back("$GPGLL");
-            startThread(true);
         }
 
 	double convertDegMinToDecDeg (float degMin) {
@@ -176,31 +189,50 @@ class ReadRawData : public ofThread {
 		return rawdata;
 	}
 
-        void threadedFunction() {
-            while(isThreadRunning()) {
+        void update() {
                 string res;
-		ofLog()<<"***************";
+		LogHighLight::Log("***************",LogHighLight::FG_WHITE,LogHighLight::BG_BLACK)<<"\n";
                 while (stream >> res) {
 			rawdata=res;
-                        ofLog()<<res;
+                        LogHighLight::Log(res,LogHighLight::FG_GREEN,LogHighLight::BG_BLUE)<<"\n";
 
 			std::size_t found = res.find(token[0]);
 			if (found!=std::string::npos){
-			    vector<string> data = ofSplitString(res,",");
+			    vector<string> data = splitstring(res,",");
 			    if(data.size()>0){
-		                    time      = ( (data[1]  != "") ? ofToFloat(data[1]) : 0 );
-				    latitude  = ( (data[2]  != "") ? convertDegMinToDecDeg(ofToFloat(data[2]))  : 0 );
-				    longitude = ( (data[4]  != "") ? convertDegMinToDecDeg(ofToFloat(data[4]))  : 0 );
-				    altitude  = ( (data[10] != "") ? convertDegMinToDecDeg(ofToFloat(data[10])) : 0 );
+		                    time      = ( (data[1]  != "") ? atof(data[1].c_str()) : 0 );
+				    latitude  = ( (data[2]  != "") ? convertDegMinToDecDeg(atof(data[2].c_str()))  : 0 );
+				    longitude = ( (data[4]  != "") ? convertDegMinToDecDeg(atof(data[4].c_str()))  : 0 );
+				    altitude  = ( (data[10] != "") ? convertDegMinToDecDeg(atof(data[10].c_str())) : 0 );
 			    }
 			}
                 }
-		ofSleepMillis(sleep);
-            }
+		sleep(xsleep);
         }
 
         void stop(){
             stream.close();
-            stopThread();
         }
+
+	vector <string> splitstring(const string & source, const string & delimiter, bool ignoreEmpty=false) {
+		vector<string> result;
+		if (delimiter.empty()) {
+			result.push_back(source);
+			return result;
+		}
+		string::const_iterator substart = source.begin(), subend;
+		while (true) {
+			subend = std::search(substart, source.end(), delimiter.begin(), delimiter.end());
+			string sub(substart, subend);
+			if (!ignoreEmpty || !sub.empty()) {
+				result.push_back(sub);
+			}
+			if (subend == source.end()) {
+				break;
+			}
+			substart = subend + delimiter.size();
+		}
+		return result;
+	}
 };
+#endif

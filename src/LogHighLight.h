@@ -1,3 +1,6 @@
+#ifndef LOGH_UTIL
+    #define LOGH_UTIL
+
 #include <ostream>
 
 namespace LogHighLight {
@@ -63,3 +66,4 @@ namespace LogHighLight {
 	    };
     };
 };
+#endif

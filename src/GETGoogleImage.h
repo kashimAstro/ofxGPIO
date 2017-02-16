@@ -1,3 +1,5 @@
+#ifndef GETMAP_IMAGE
+    #define GETMAP_IMAGE
 #include "ofMain.h"
 
 class GETGoogleImage {
@@ -38,3 +40,4 @@ class GETGoogleImage {
                 }
 
 };
+#endif

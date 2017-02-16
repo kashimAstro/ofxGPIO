@@ -1,3 +1,6 @@
+#ifndef OLED_H
+    #define OLED_H
+
 #define ADROLED 0x3C
 #define WIDTH_OLED 128
 #define HEIGHT_OLED 64
@@ -160,3 +163,4 @@ class OLED
 		}
 	}
 };
+#endif

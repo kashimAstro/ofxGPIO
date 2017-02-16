@@ -1,3 +1,6 @@
+#ifndef MCP_H
+    #define MCP_H
+
 #include <unistd.h>
 #include <stdint.h>
 #include <string.h>
@@ -162,3 +165,4 @@ void setup(std::string devspi, unsigned char spiMode, unsigned int spiSpeed, uns
     this->xclose();
 }
 };
+#endif

@@ -1,3 +1,6 @@
+#ifndef KALMAN_UTIL
+    #define KALMAN_UTIL
+
 #include <tgmath.h>
 #include <math.h>
 
@@ -55,3 +58,4 @@ class Kalman {
 	    double getQbias() { return Q_bias; }
 	    double getRmeasure() { return R_measure; }
 };
+#endif

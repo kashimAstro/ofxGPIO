@@ -31,8 +31,8 @@
 #include "kalman.h"
 #include "MCP.h"
 #include "font.h"
+#include "ReadRawData.h"
 #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS 
-	#include "ReadRawData.h"
 	#include "GETGoogleImage.h"
 #endif
 #include "LED.h"

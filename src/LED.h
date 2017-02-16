@@ -1,3 +1,6 @@
+#ifndef LED_H
+    #define LED_H
+
 #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
 	#include "ofMain.h"
 #endif
@@ -82,3 +85,4 @@ class LED {
 	}
 
 };
+#endif
