@@ -20,6 +20,7 @@
 
 //log color
 #include "LogHighLight.h"
+using namespace LogHighLight;
 
 //core low level
 #include "gpio.h"
@@ -37,5 +38,3 @@
 #endif
 #include "LED.h"
 #include "OLED.h"
-
-using namespace LogHighLight;
