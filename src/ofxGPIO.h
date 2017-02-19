@@ -35,6 +35,7 @@ using namespace LogHighLight;
 #include "ReadRawData.h"
 #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS 
 	#include "GETGoogleImage.h"
+	#include "gpio_state.h"
 #endif
 #include "LED.h"
 #include "OLED.h"
