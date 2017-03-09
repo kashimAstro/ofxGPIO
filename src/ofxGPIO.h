@@ -1,3 +1,5 @@
+#pragma once
+
 //system
 #include <iostream>
 #include <sstream>
