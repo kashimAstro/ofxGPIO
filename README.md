@@ -2,13 +2,21 @@ A small library in C++ for the use of GPIO raspberrypi (A/B/2/3/Zero) orangepi (
 
 <b><a href="http://www.ziggurats.net/port.php?port=ofxGPIO" target="_blank">Documentation</a></b>
 
-<img src="screen/14mtz6kkrVLUPe.gif"/><img src="screen/dVBS2AwaDFGa4.gif"/><br> <img src="screen/Uqvo9WQ8X1RTO.gif"/><img src="screen/3SJ2Lc9EO9KSs.gif"/><br>
+<img src="screen/rf24-scanner.gif"/><img src="screen/14mtz6kkrVLUPe.gif"/><img src="screen/dVBS2AwaDFGa4.gif"/><br> <img src="screen/Uqvo9WQ8X1RTO.gif"/><img src="screen/3SJ2Lc9EO9KSs.gif"/><br>
 <img src="screen/uRLtiGKjNqFwY.gif"/><br>
 
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-logo.jpg)
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-GPIO-pinouts.png)
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/orangepi.png)
 
+
+Example scanner with nRF24L01:
+	<ul>
+		<li>Raspberry pi (2/3/Zero/A/A+/B+)
+		<li>nRF24L01</li>
+	</ul>
+fritzing example:
+![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/raspberry-rf24.png)
 
 Example simple Button Read state:
 	<ul>
