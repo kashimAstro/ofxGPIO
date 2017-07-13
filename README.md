@@ -5,7 +5,11 @@ A small library in C++ for the use of GPIO raspberrypi (A/B/2/3/Zero) orangepi (
 <table border="1">
 <tr>
 <td><img src="screen/6ui.png"/></td><td><img src="screen/1ui.png"/></td>
+</tr>
+<tr>
 <td><img src="screen/2ui.png"/></td><td><img src="screen/3ui.png"/></td>
+</tr>
+<tr>
 <td><img src="screen/4ui.png"/></td><td><img src="screen/5ui.png"/></td>
 </tr>
 </table>
