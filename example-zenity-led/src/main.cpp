@@ -12,7 +12,7 @@ int main()
 	while (1)
 	{
 		string onoff = zen.dialog("on or off Led ?","OFF","ON");
-		Log("dialog-value: "+onoff,Color::FG_YELLOW);
+		Log("dialog-value: "+onoff,Color::FG_YELLOW)<<"\n";
         	gpio17.setval_gpio(onoff);
 	}
 
