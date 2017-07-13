@@ -5,17 +5,18 @@ A small library in C++ for the use of GPIO raspberrypi (A/B/2/3/Zero) orangepi (
 <table border="1">
 <tr>
 <td><img src="screen/6ui.png"/></td><td><img src="screen/1ui.png"/></td>
-</tr>
-<tr>
 <td><img src="screen/2ui.png"/></td><td><img src="screen/3ui.png"/></td>
-</tr>
-<tr>
 <td><img src="screen/4ui.png"/></td><td><img src="screen/5ui.png"/></td>
 </tr>
 </table>
 
-<img src="screen/rf24-scanner.gif"/><img src="screen/14mtz6kkrVLUPe.gif"/><img src="screen/dVBS2AwaDFGa4.gif"/><br> <img src="screen/Uqvo9WQ8X1RTO.gif"/><img src="screen/3SJ2Lc9EO9KSs.gif"/><br>
-<img src="screen/uRLtiGKjNqFwY.gif"/><br>
+<table border="1">
+<tr>
+<td><img src="screen/rf24-scanner.gif"/></td><td><img src="screen/14mtz6kkrVLUPe.gif"/></td>
+<td><img src="screen/dVBS2AwaDFGa4.gif"/></td><td><img src="screen/Uqvo9WQ8X1RTO.gif"/></td>
+<td><img src="screen/3SJ2Lc9EO9KSs.gif"/></td><td><img src="screen/uRLtiGKjNqFwY.gif"/></td>
+</tr>
+</table>
 
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-logo.jpg)
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-GPIO-pinouts.png)
