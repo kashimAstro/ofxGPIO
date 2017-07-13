@@ -20,9 +20,9 @@ A small library in C++ for the use of GPIO raspberrypi (A/B/2/3/Zero) orangepi (
 </tr>
 </table>
 
-<table border="1">
+<table>
 <tr>
-<td><img src="screen/Raspberry-Pi-logo.jpg"></td>
+<td align="center"><img src="screen/Raspberry-Pi-logo.jpg"></td>
 </tr>
 </table>
 
