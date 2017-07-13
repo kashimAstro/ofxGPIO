@@ -5,6 +5,9 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
+#include <iostream>
+
+using namespace std;
 
 class SPI2 { 
     public:

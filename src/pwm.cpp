@@ -1,4 +1,4 @@
-#include "rpiPWM1.h"
+#include "pwm.h"
 
 //Need to do this to be able to access these constants
 //Private constants

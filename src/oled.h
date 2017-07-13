@@ -23,11 +23,11 @@ enum OLEDBG { BLACK,WHITE };
 class OLED
 {
 	public:
-	I2CBus * bus;
+	I2c * bus;
 
 	void setup(OLEDBG bg)
 	{
-		bus = new I2CBus("/dev/i2c-1");
+		bus = new I2c("/dev/i2c-1");
                 bus->addressSet(ADROLED);
                 bus->writeByte(CMD,COMMAND_CHARGE_PUMP_SETTING);
                 bus->writeByte(CMD,COMMAND_CHARGE_PUMP_ENABLE);

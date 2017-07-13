@@ -1,5 +1,8 @@
-#ifndef I2C_BUS
-    #define I2C_BUS
+#ifndef I2c_BUS
+    #define I2c_BUS
+#ifdef I2c
+	#undef I2c
+#endif
 
 #include <sys/ioctl.h>
 #include <stdint.h>
@@ -29,10 +32,10 @@
 #define MPU_POWER1 0x6b
 #define MPU_POWER2 0x6c
 
-class I2CBus {
+class I2c {
 	public:
-		I2CBus(const char * deviceName);
-		~I2CBus();
+		I2c(const char * deviceName);
+		~I2c();
 		void setup(const char * deviceName);
 		int addressSet(uint8_t address);
 		int write(uint8_t command);

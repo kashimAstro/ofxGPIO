@@ -7,14 +7,14 @@
 
 class ofApp : public ofBaseApp{
         public:
-                I2CBus * busCompass;
+                I2c * busCompass;
 
                 int compassRawData[3];
                 float heading;
                 ofxUDPManager udp;
 
                 void setup(){
-                        busCompass = new I2CBus("/dev/i2c-1");
+                        busCompass = new I2c("/dev/i2c-1");
                         busCompass->addressSet(COMPASS);
                         busCompass->writeByte(0, 0b01110000); // Set to 8 samples @ 15Hz
                         busCompass->writeByte(1, 0b00100000); // 1.3 gain LSb / Gauss 1090 (default)

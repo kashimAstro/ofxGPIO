@@ -6,11 +6,11 @@
 
 class ofApp : public ofBaseApp{
         public:
-		I2CBus * bus;
+		I2c * bus;
 		float ap = 0.955;
 		
                 void setup(){
-			bus = new I2CBus("/dev/i2c-1");
+			bus = new I2c("/dev/i2c-1");
 			bus->addressSet(MPU);
 			int8_t power = bus->readByte(MPU_POWER1);
 			bus->writeByte(MPU_POWER1, ~(1 << 6) & power);

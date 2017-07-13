@@ -8,7 +8,7 @@
 #   The location of your root openFrameworks installation
 #       (default) OF_ROOT = ../../.. 
 ################################################################################
-#OF_ROOT = ../../of_v0.9.3_linuxarmv6l_release/
+# OF_ROOT = ../../..
 
 ################################################################################
 # PROJECT ROOT
@@ -87,7 +87,7 @@
 #
 #   Note: Leave a leading space when adding list items with the += operator
 ################################################################################
-# PROJECT_DEFINES = 
+#PROJECT_DEFINES =
 
 ################################################################################
 # PROJECT CFLAGS
@@ -104,7 +104,7 @@
 #
 #   Note: Leave a leading space when adding list items with the += operator
 ################################################################################
-# PROJECT_CFLAGS = 
+PROJECT_CFLAGS = -DENABLE_BCM2835=1  
 
 ################################################################################
 # PROJECT OPTIMIZATION CFLAGS

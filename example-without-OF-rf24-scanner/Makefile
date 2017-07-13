@@ -1,0 +1,40 @@
+CC=@g++ 
+CCFLAGS=-std=c++11 -Wall -fPIC -Ofast
+CCFLAGS+=-I../src/
+FOLDER=$(notdir $(CURDIR))
+DEFINE=-DCOMPILE_WITHOUT_OPENFRAMEWORKS=1 -DENABLE_BCM2835=1
+OUTPUT=bin/$(FOLDER)
+BIN=bin/
+OBJ=obj/
+EXAMPLE=$(strip $(FOLDER).o) # name binary by folder name 
+SRC_EXAMPLE=src/main.cpp # path source
+
+all: folder gpio.o i2c.o pwm.o smbus.o bcm2835.o $(EXAMPLE)
+	$(CC) $(CCFLAGS) $(OBJ)$(EXAMPLE) $(OBJ)gpio.o $(OBJ)i2c.o $(OBJ)pwm.o $(OBJ)smbus.o $(OBJ)bcm2835.o $(DEFINE) -o $(OUTPUT)
+
+folder:
+	mkdir -p $(BIN)
+	mkdir -p $(OBJ)
+
+gpio.o: ../src/gpio.cpp
+	$(CC) -o $(OBJ)gpio.o    -c ../src/gpio.cpp $(DEFINE) $(CCFLAGS) 
+
+i2c.o: ../src/i2c.cpp
+	$(CC) -o $(OBJ)i2c.o  -c ../src/i2c.cpp $(DEFINE) $(CCFLAGS)
+
+pwm.o: ../src/pwm.cpp
+	$(CC) -o $(OBJ)pwm.o -c ../src/pwm.cpp $(DEFINE) $(CCFLAGS)
+
+smbus.o: ../src/smbus.cpp
+	$(CC) -o $(OBJ)smbus.o   -c ../src/smbus.cpp $(DEFINE) $(CCFLAGS)
+
+bcm2835.o: ../src/bcm2835.c
+	$(CC) -o $(OBJ)bcm2835.o -c ../src/bcm2835.c $(DEFINE) $(CCFLAGS)
+
+$(EXAMPLE): $(SRC_EXAMPLE) 
+	$(CC) -o $(OBJ)$(EXAMPLE) -c $(SRC_EXAMPLE) $(DEFINE) $(CCFLAGS)
+
+
+clean:
+	rm $(BIN)$(EXAMPLE)
+	rm $(OBJ)*.o

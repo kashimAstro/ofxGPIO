@@ -4,10 +4,10 @@
 
 class ofApp : public ofBaseApp{
         public:
-		I2CBus * bus;
+		I2c * bus;
 
                 void setup(){
-			bus = new I2CBus("/dev/i2c-1");
+			bus = new I2c("/dev/i2c-1");
 			bus->addressSet(0x04);
 
 		}

@@ -2,18 +2,18 @@
 #include "ofAppNoWindow.h"
 #include "ofxGPIO.h"
 
-#define I2C_SMBUS_BLOCK_MAX 32
+#define I2c_SMBUS_BLOCK_MAX 32
 
 class ofApp : public ofBaseApp{
         public:
-		I2CBus * bus;
+		I2c * bus;
 		int address;
-		uint16_t block[I2C_SMBUS_BLOCK_MAX];
+		uint16_t block[I2c_SMBUS_BLOCK_MAX];
       		unsigned short int clear[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 		unsigned short int letter[8];
 
                 void setup(){ 
-			bus = new I2CBus("/dev/i2c-1");
+			bus = new I2c("/dev/i2c-1");
 			bus->addressSet(address);
 			address = 0;
                         bus->write(address);

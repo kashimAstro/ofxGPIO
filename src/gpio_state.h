@@ -1,5 +1,8 @@
 #include "ofMain.h"
 
+/* NOT COMPLETE */
+
+
 enum TYPEGPIOS{ PIA = 0, PIB = 1, PIBP = 2, PIAP = 3, PI2 = 4, PI3 = 5, PIZERO = 6, H3 = 7 };
 
 class GPIOS

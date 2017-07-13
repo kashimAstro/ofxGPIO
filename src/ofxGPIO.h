@@ -1,6 +1,10 @@
 #pragma once
 
-//system
+#ifdef I2c
+	#undef I2c
+#endif
+
+/* system */
 #include <iostream>
 #include <sstream>
 #include <cstring>
@@ -10,8 +14,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <vector>
+#include <stddef.h>
+#include <time.h>
+#include <sys/time.h>
 
-//OF tool
+/* OF */
 #ifdef COMPILE_WITHOUT_OPENFRAMEWORKS
 	struct ofVec3f {
 		float x;
@@ -20,24 +27,36 @@
 	};
 #endif
 
-//log color
+/* Output Log Color */
 #include "LogHighLight.h"
 using namespace LogHighLight;
 
-//core low level
+/* core low level */
 #include "gpio.h"
-#include "i2cBus.h"
-#include "SPI2.h"
-#include "rpiPWM1.h"
+#include "i2c.h"
+#include "spi2.h"
+#include "pwm.h"
 
-//core high level
+/* core high level */
 #include "kalman.h"
-#include "MCP.h"
+#include "mcp.h"
 #include "font.h"
-#include "ReadRawData.h"
+#include "readata.h"
+/* only openframeworks */
 #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS 
-	#include "GETGoogleImage.h"
+	#include "google_image.h"
 	#include "gpio_state.h"
 #endif
-#include "LED.h"
-#include "OLED.h"
+/* end OF */
+/* core high level */
+#include "led.h"
+#include "oled.h"
+
+//#define ENABLE_BCM2835 0 /* 0 for disable bcm2335 */
+#if ENABLE_BCM2835 == 1
+	#include "bcm2835.h" /* Test new release ofxGPIOv2 */
+#endif
+
+#if ENABLE_ZENITY == 1
+	#include "zenity.h"
+#endif
