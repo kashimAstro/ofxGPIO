@@ -10,9 +10,15 @@ OUTPUT   = bin/$(FOLDER)
 SOURCE   = src/main.cpp
 BIN      = bin/
 
+DOT      = $(shell which zenity)
+
 all:
+ifneq (,$(DOT))
 	mkdir -p $(BIN)
 	$(CC) -o $(OUTPUT) $(SOURCE) $(SRCFILE) $(DEFINE) $(CFLAGS) -std=c++11 
+else
+	$(info "Error: install zenity use script ./tools/install_zenity.sh")
+endif
 
 clean:
 	rm $(OUTPUT) 
