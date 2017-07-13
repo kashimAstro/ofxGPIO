@@ -20,6 +20,18 @@ A small library in C++ for the use of GPIO raspberrypi (A/B/2/3/Zero) orangepi (
 </tr>
 </table>
 
+<table border="1">
+<tr>
+<td><img src="screen/Raspberry-Pi-logo.jpg"></td>
+</tr>
+</table>
+
+<table border="1">
+<tr>
+<td><img src="screen/Raspberry-Pi-GPIO-pinouts.png"/></td><td><img src="screen/orangepi.png"/></td>
+</tr>
+</table>
+
 <!--![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-logo.jpg)
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-GPIO-pinouts.png)
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/orangepi.png) -->
