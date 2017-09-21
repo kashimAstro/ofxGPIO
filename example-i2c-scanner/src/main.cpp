@@ -4,13 +4,13 @@
 class I2CScanner
 {
 	public:
-		I2CBus * i2c;
+		I2c * i2c;
 		string path;
 
 		void setup(string _p)
 		{
 			path = _p;
-                        i2c = new I2CBus(path.c_str());
+                        i2c = new I2c(path.c_str());
 		}
 
 		void update()
