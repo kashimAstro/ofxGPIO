@@ -55,12 +55,37 @@ class ofApp : public ofBaseApp{
 public:
     I2c * bus;
 
-    void setThreshholds( uint8_t touch, uint8_t release ){
+    void setThresholds( uint8_t touch, uint8_t release ){
         for (uint8_t i=0; i<12; i++) {
             bus->writeByte(MPR121_TOUCHTH_0 + 2*i, touch);
             bus->writeByte(MPR121_RELEASETH_0 + 2*i, release);
         }
     }
+
+    uint16_t touched() {
+        uint8_t data [2];
+        bus->readBlock(MPR121_TOUCHSTATUS_L, 2, data);
+        uint16_t t = data[0] + data[1]*256;
+        return t & 0x0FFF;
+    }
+    
+    uint16_t  filteredData(uint8_t t) {
+        if (t > 12) return 0;
+        uint8_t data [2];
+        bus->readBlock(MPR121_FILTDATA_0L + t*2, 2, data);
+        uint16_t d = data[0] + data[1]*256;
+        return d;
+      
+    }
+
+    uint16_t  baselineData(uint8_t t) {
+        if (t > 12) return 0;
+        uint8_t data [2];
+        bus->readBlock(MPR121_BASELINE_0 + t*2, 2, data);
+        uint16_t d = data[0] + data[1]*256;
+        return d;
+    }
+
 
     void setup(){
         bus = new I2c("/dev/i2c-1");
@@ -77,7 +102,7 @@ public:
             ofLogError()<<"failed to initialize";
         } else {
 
-            setThreshholds(12, 6);
+            setThresholds(12, 6);
 
             bus->writeByte(MPR121_MHDR, 0x01);
             bus->writeByte(MPR121_NHDR, 0x01);
@@ -110,15 +135,13 @@ public:
     
     void update(){
         
-        int16_t touched  = bus->readByte(MPR121_TOUCHSTATUS_L);
+        uint16_t touchbytes = touched();
         
         string report = "touches:";
         
         for (uint8_t i=0; i<12; i++) {
 
-            uint16_t mask = 1;
-            mask = mask<<i;
-            bool i_touched = (touched & mask) > 0;
+            uint16_t i_touched = (touchbytes >> i) & 0x0001;
 
             report+=ofToString( (int)i );
             report+=":";
