@@ -24,7 +24,6 @@ class GPIOS
 	vector<_PIN_> pin_pi40;
 	vector<_PIN_> desc;
 	vector<GPIO> gpio;
-        vector<GPIOSlider> slider;
 	TYPEGPIOS type;
 	bool menu;
 	int _x, _y, pin;
@@ -161,9 +160,6 @@ class GPIOS
 					GPIO gg;
 					gpio.push_back(gg);
 				}
-				GPIOSlider sl;
-				sl.setup(0, 100, 0, true, true);
-				slider.push_back(sl);
 			}
 			desc = pin_pi26;
 		}
@@ -183,9 +179,6 @@ class GPIOS
 					GPIO gg;
 					gpio.push_back(gg);
 				}
-				GPIOSlider sl;
-				sl.setup(0, 100, 0, true, true);
-				slider.push_back(sl);
 			}
 			desc = pin_pi40;
 		}
