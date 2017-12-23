@@ -9,7 +9,7 @@ using namespace std;
 
 GPIO::GPIO()
 {
-    this->gpionum = "4";
+    this->gpionum = "";
 }
 
 GPIO::GPIO(string gnum)

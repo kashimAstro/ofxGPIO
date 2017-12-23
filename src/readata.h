@@ -115,7 +115,7 @@ class GPSSerial : public ofThread {
 		        token.push_back("$GPGLL");
 
 			serial.setup(device,baund);
-			startThread(true);
+			startThread();
 			sleep = _sleep;
 
 		}

@@ -1,7 +1,8 @@
 #include "ofMain.h"
+#include "GPIOSlider.h"
+#include "gpio.h"
 
 /* NOT COMPLETE */
-
 
 enum TYPEGPIOS{ PIA = 0, PIB = 1, PIBP = 2, PIAP = 3, PI2 = 4, PI3 = 5, PIZERO = 6, H3 = 7 };
 
@@ -16,10 +17,19 @@ class GPIOS
 		string value;
 		string id;
 		string type;
+		int index;
 	};
 
 	vector<_PIN_> pin_pi26;
 	vector<_PIN_> pin_pi40;
+	vector<_PIN_> desc;
+	vector<GPIO> gpio;
+        vector<GPIOSlider> sliderGroup;
+	TYPEGPIOS type;
+	bool menu;
+	int _x, _y, pin;
+	int key_code;
+	int key_return,key_return_tmp;
 
 	ofRectangle getBitmapStringBoundingBox(string text) // <- thanks roymacdonald
 	{
@@ -38,7 +48,7 @@ class GPIOS
 			maxLineLength = MAX(maxLineLength, currentLineLength);
 		}
 
-		int padding = 4;
+		//int padding = 4;
 		int fontSize = 8;
 		float leading = 1.7;
 		int height = lines.size() * fontSize * leading - 1;
@@ -46,8 +56,20 @@ class GPIOS
 		return ofRectangle(0,0,width, height);
 	}
 
-	void setup()
+	void setup( TYPEGPIOS _t, int __x, int __y)
 	{
+		type = _t;
+		_x   = __x;
+		_y   = __y;
+
+		menu = true;
+		pin  = -1;
+		key_code = -1;
+		key_return = -1;
+		key_return_tmp = -1;
+                ofAddListener(ofEvents().keyPressed, this, &GPIOS::mykeyPressed);
+                ofAddListener(ofEvents().keyReleased, this, &GPIOS::mykeyReleased);
+
 		/* 26 pin raspberry description */
 		_PIN_ p;
 		p.name="3.3v";   p.color = ofColor::red;    p.id = "+";  p.type = "VCC";      pin_pi26.push_back(p);
@@ -121,84 +143,194 @@ class GPIOS
 		p.name="GPIO16"; p.color = ofColor::orange; p.id = "16"; p.type = "IO";       pin_pi40.push_back(p);
 		p.name="GPIO20"; p.color = ofColor::orange; p.id = "20"; p.type = "IO";       pin_pi40.push_back(p);
 		p.name="GPIO21"; p.color = ofColor::orange; p.id = "21"; p.type = "IO";       pin_pi40.push_back(p);
+
 		/**/
+		if( type == PIA || type == PIB ) {
+			for(unsigned int i = 0; i < pin_pi26.size(); i++)
+			{
+				size_t found = pin_pi26[i].name.find("GPIO");
+				if (found!=string::npos) 
+				{
+					pin_pi26[i].index = i;
+					GPIO gg;
+					gg.setup(atoi(pin_pi26[i].id.c_str()),OUT,LOW);
+					gpio.push_back(gg);
+					cout << "******" << endl;
+				}
+				else{
+					pin_pi26[i].index = i;
+					GPIO gg;
+					gpio.push_back(gg);
+				}
+			}
+			desc = pin_pi26;
+		}
+		else if( type == PIBP || type == PIAP || type == PI2 || type == PI3 || type == PIZERO ) {
+			for(unsigned int i = 0; i < pin_pi40.size(); i++)
+			{
+				size_t found = pin_pi40[i].name.find("GPIO");
+				if (found!=string::npos)
+				{
+					pin_pi40[i].index = i;
+					GPIO gg;
+					gg.setup(atoi(pin_pi40[i].id.c_str()),OUT,LOW);
+					gpio.push_back(gg);
+					cout << "******" << endl;
+				}
+				else{
+					pin_pi40[i].index = i;
+					GPIO gg;
+					gpio.push_back(gg);
+				}
+			}
+			desc = pin_pi40;
+		}
 	}
 
-	void gpio( TYPEGPIOS t, int _x = 10, int _y = 10 )
+	void draw_gpio(vector<_PIN_> _desc, int label_y)
 	{
-
-		if( t == PIA || t == PIB )
+		ofPushMatrix();
+		for(unsigned int i = 0, l = 0; i < _desc.size(); i++ )
 		{
-			ofPushMatrix();
-			for( int i = 0, l = 0; i < pin_pi26.size(); i++ )
+			int padd = 1;
+			int couter = i;
+			ofRectangle rect;
+			if(i>=_desc.size()/2)
 			{
-				int padd = 1;
-				int couter = i;
-				ofRectangle rect;
-				if(i>=pin_pi26.size()/2)
-				{
-					padd = 150;
-					couter = l;
-					l++;
-				}
-				int x = padd+_x;
-				int y = (5+(couter*20))+_y;
-				rect.set(x+80,y-8,15,15);
-				if(i>=pin_pi26.size()/2)
-					rect.set(x-50,y-8,15,15);
-
-				ofDrawBitmapStringHighlight( pin_pi26[i].name, x, y, pin_pi26[i].color );
-				ofPushStyle();
-				if(rect.inside(ofGetMouseX(),ofGetMouseY()))
-				{
-					ofSetColor(pin_pi26[i].color);
-					string str = "Name: "+pin_pi26[i].name+", Type: "+pin_pi26[i].type+", Pin: "+pin_pi26[i].id;
-					ofDrawBitmapStringHighlight(str,1+_x,280+_y);
-				}
-				else
-					ofSetColor(ofColor::white);
-				ofDrawRectangle(rect);
-				ofPopStyle();
+				padd = 150;
+				couter = l;
+				l++;
 			}
-			ofPopMatrix();
-		}
-		else if( t == PIBP || t == PIAP || t == PI2 || t == PI3 || t == PIZERO )
-		{
-			ofPushMatrix();
-			for( int i = 0, l = 0; i < pin_pi40.size(); i++ )
+			int x = padd+_x;
+			int y = (5+(couter*20))+_y;
+			rect.set(x+80,y-8,15,15);
+			if(i>=_desc.size()/2)
+				rect.set(x-50,y-8,15,15);
+
+			ofDrawBitmapStringHighlight( _desc[i].name, x, y, _desc[i].color );
+			ofPushStyle();
+
+			if(rect.inside(ofGetMouseX(),ofGetMouseY()) || key_code == i)
 			{
-				int padd = 1;
-				int couter = i;
-				ofRectangle rect;
-				if(i>=pin_pi40.size()/2)
-				{
-					padd = 150;
-					couter = l;
-					l++;
+				ofSetColor(_desc[i].color);
+				string str = "Name: "+_desc[i].name+", Type: "+_desc[i].type+", Pin: "+_desc[i].id;
+				size_t found = _desc[i].name.find("GPIO");
+				if( (ofGetMousePressed(0)) && menu && found!=string::npos ) {
+					menu = false;
+					gpio[i].setval_gpio(HIGH);
+					cout << "MOUSE HIGH: " << gpio[i].get_gpionum() << endl;
+					pin = i;
 				}
-				int x = padd+_x;
-				int y = (5+(couter*20))+_y;
-				ofDrawBitmapStringHighlight( pin_pi40[i].name, x, y, pin_pi40[i].color );
-				ofPushStyle();
-				rect.set(x+80,y-8,15,15);
-				if(i>=pin_pi40.size()/2)
-					rect.set(x-50,y-8,15,15);
-				if(rect.inside(ofGetMouseX(),ofGetMouseY()))
-				{
-					ofSetColor(pin_pi40[i].color);
-					string str = "Name: "+pin_pi40[i].name+", Type: "+pin_pi40[i].type+", Pin: "+pin_pi40[i].id;
-					ofDrawBitmapStringHighlight(str,1+_x,420+_y);
+				else if( (!ofGetMousePressed(0) && key_return == -1) && !menu && found!=string::npos )  {
+					menu = true;
+					gpio[i].setval_gpio(LOW);
+					cout << "MOUSE LOW: " << gpio[i].get_gpionum() << endl;
+					pin  = -1;
 				}
-				else
-					ofSetColor(ofColor::white);
-				ofDrawRectangle(rect);
-				ofPopStyle();
+				key_return_tmp = key_return;
+				ofDrawBitmapStringHighlight(str,1+_x,label_y+_y);
 			}
-			ofPopMatrix();
+			else
+			{
+				ofSetColor(ofColor::white);
+			}
+			ofDrawRectangle(rect);
+			ofPopStyle();
+			if(!menu && pin != -1) {
+				//ofPushStyle();
+				//sliderGroup[pin].draw();
+				//ofPopStyle();
+			}
 		}
-		else if( t == H3 )
+		ofPopMatrix();
+	}
+
+	void draw()
+	{
+		if( type == PIA || type == PIB )
+		{
+			draw_gpio(desc,280);
+		}
+		else if( type == PIBP || type == PIAP || type == PI2 || type == PI3 || type == PIZERO )
+		{
+			draw_gpio(desc,420);
+		}
+		else if( type == H3 )
 		{
 
+		}
+	}
+
+        void mykeyReleased(ofKeyEventArgs& eventArgs)
+	{ 
+		if( eventArgs.key == OF_KEY_RETURN ){
+			key_return = -1;
+			/*if(key_code != -1)
+			{
+				size_t found = desc[key_code].name.find("GPIO");
+				if( menu && found!=string::npos ) {
+					menu = false;
+					gpio[key_code].setval_gpio(LOW);
+					cout << "KEY LOW: " << gpio[key_code].get_gpionum() << endl;
+					pin = key_code;
+				}
+			}*/
+		}
+	}
+
+        void mykeyPressed(ofKeyEventArgs& eventArgs)
+	{
+		if( eventArgs.key == OF_KEY_DOWN ) {
+			key_code++;
+			if( type == PIA || type == PIB ) {
+				if(key_code>=pin_pi26.size()) key_code = -1;
+			}else if( type == PIBP || type == PIAP || type == PI2 || type == PI3 || type == PIZERO ) {
+				if(key_code>=pin_pi40.size()) key_code = -1;
+			}
+		}
+		if( eventArgs.key == OF_KEY_UP ) {
+			key_code--;
+			if( type == PIA || type == PIB ) {
+				if(key_code<=0) key_code = -1;
+			}else if( type == PIBP || type == PIAP || type == PI2 || type == PI3 || type == PIZERO ) {
+				if(key_code<=0) key_code = -1;
+			}
+		}
+
+		if( eventArgs.key == OF_KEY_RETURN ){
+			key_return = 1;
+			if(key_code != -1)
+			{
+				size_t found = desc[key_code].name.find("GPIO");
+				if( menu && found!=string::npos ) {
+					menu = false;
+					gpio[key_code].setval_gpio(HIGH);
+					cout << "KEY HIGH: " << gpio[key_code].get_gpionum() << endl;
+					pin = key_code;
+				}
+			}
+		}
+	}
+
+	void exit(){
+                ofRemoveListener(ofEvents().keyPressed, this, &GPIOS::mykeyPressed);
+                ofRemoveListener(ofEvents().keyReleased, this, &GPIOS::mykeyReleased);
+
+		for(unsigned int i = 0; i < pin_pi26.size(); i++)
+		{
+			size_t found = pin_pi40[i].name.find("GPIO");
+			if (found!=string::npos) 
+			{
+				gpio[i].unexport_gpio();
+			}
+		}
+		for(unsigned int i = 0; i < pin_pi40.size(); i++)
+		{
+			size_t found = pin_pi40[i].name.find("GPIO");
+			if (found!=string::npos) 
+			{
+				gpio[i].unexport_gpio();
+			}
 		}
 	}
 };
