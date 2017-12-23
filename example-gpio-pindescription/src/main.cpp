@@ -4,19 +4,26 @@
 class ofApp : public ofBaseApp{
 	public:
 	GPIOS dgpio;
+
 	void setup()
 	{
-		dgpio.setup();
+		dgpio.setup( TYPEGPIOS::PIBP, 10, 10 );
 	}
+
 	void draw()
 	{
 		ofBackgroundGradient(ofColor::grey,ofColor::black);
-		dgpio.gpio(TYPEGPIOS::PIA);
-		dgpio.gpio(TYPEGPIOS::PIBP, 350,10);
+                dgpio.draw();
+	}
+	
+	void exit()
+	{
+		dgpio.exit();
 	}
 };
 
-int main(){
-	ofSetupOpenGL(1024,768, OF_WINDOW);
-	ofRunApp( new ofApp());
+int main(int argc, char ** argv)
+{
+	ofSetupOpenGL(380,500, OF_WINDOW);
+	ofRunApp( new ofApp(  ) );
 }
