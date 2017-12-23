@@ -24,7 +24,7 @@ class GPIOS
 	vector<_PIN_> pin_pi40;
 	vector<_PIN_> desc;
 	vector<GPIO> gpio;
-        vector<GPIOSlider> sliderGroup;
+        vector<GPIOSlider> slider;
 	TYPEGPIOS type;
 	bool menu;
 	int _x, _y, pin;
@@ -155,13 +155,15 @@ class GPIOS
 					GPIO gg;
 					gg.setup(atoi(pin_pi26[i].id.c_str()),OUT,LOW);
 					gpio.push_back(gg);
-					cout << "******" << endl;
 				}
 				else{
 					pin_pi26[i].index = i;
 					GPIO gg;
 					gpio.push_back(gg);
 				}
+				GPIOSlider sl;
+				sl.setup(0, 100, 0, true, true);
+				slider.push_back(sl);
 			}
 			desc = pin_pi26;
 		}
@@ -175,13 +177,15 @@ class GPIOS
 					GPIO gg;
 					gg.setup(atoi(pin_pi40[i].id.c_str()),OUT,LOW);
 					gpio.push_back(gg);
-					cout << "******" << endl;
 				}
 				else{
 					pin_pi40[i].index = i;
 					GPIO gg;
 					gpio.push_back(gg);
 				}
+				GPIOSlider sl;
+				sl.setup(0, 100, 0, true, true);
+				slider.push_back(sl);
 			}
 			desc = pin_pi40;
 		}
@@ -206,6 +210,19 @@ class GPIOS
 			rect.set(x+80,y-8,15,15);
 			if(i>=_desc.size()/2)
 				rect.set(x-50,y-8,15,15);
+
+			if(i<=(_desc.size()-1)/2) {
+				ofPushStyle();
+				ofSetColor(_desc[i].color);
+				ofDrawRectangle(x-5, y-14, 80,25);
+				ofPopStyle();
+			}
+			if(i>=(_desc.size()-1)/2) {
+				ofPushStyle();
+				ofSetColor(_desc[i].color);
+				ofDrawRectangle(x-28, y-14, 80,25);
+				ofPopStyle();
+			}
 
 			ofDrawBitmapStringHighlight( _desc[i].name, x, y, _desc[i].color );
 			ofPushStyle();
@@ -234,13 +251,11 @@ class GPIOS
 			{
 				ofSetColor(ofColor::white);
 			}
+			ofPushMatrix();
+			ofTranslate(0,-2,0);
 			ofDrawRectangle(rect);
+			ofPopMatrix();
 			ofPopStyle();
-			if(!menu && pin != -1) {
-				//ofPushStyle();
-				//sliderGroup[pin].draw();
-				//ofPopStyle();
-			}
 		}
 		ofPopMatrix();
 	}
