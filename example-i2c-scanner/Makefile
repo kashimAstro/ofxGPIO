@@ -2,8 +2,8 @@ CC       = g++ -Wall
 FOLDER   = $(notdir $(CURDIR))
 CFLAGS   = -I../src/
 SRCFILE  = ../src/gpio.cpp
-SRCFILE  += ../src/i2cBus.cpp
-SRCFILE  += ../src/rpiPWM1.cpp
+SRCFILE  += ../src/i2c.cpp
+SRCFILE  += ../src/pwm.cpp
 SRCFILE  += ../src/smbus.cpp
 DEFINE   = -DCOMPILE_WITHOUT_OPENFRAMEWORKS=1
 OUTPUT   = -o bin/$(FOLDER)
