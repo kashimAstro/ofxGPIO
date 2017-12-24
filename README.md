@@ -2,6 +2,25 @@ A small library in C++ for the use of GPIO raspberrypi (A/B/2/3/Zero) orangepi (
 
 <b><a href="http://www.ziggurats.net/port.php?port=ofxGPIO" target="_blank">Documentation</a></b>
 
+<br><br>
+
+<h1> Simple Gtk+ UI Utility </h1>
+<table border="1">
+<tr>
+<td><img src="screen/gtk-ui.png"/></td>
+</tr>
+</table>
+
+<h1> Zenity UI Utility </h1>
+<table border="1">
+<tr>
+<td><img src="screen/6ui.png"/></td><td><img src="screen/1ui.png"/></td><td><img src="screen/2ui.png"/></td>
+</tr>
+<tr>
+<td><img src="screen/3ui.png"/></td><td><img src="screen/4ui.png"/></td><td><img src="screen/5ui.png"/></td>
+</tr>
+</table>
+
 <h1> Sample </h1>
 
 <table border="1">
@@ -163,17 +182,6 @@ https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configurin
 <br>
 https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
 
-<br><br>
-
-<h1> Zenity UI Utility </h1>
-<table border="1">
-<tr>
-<td><img src="screen/6ui.png"/></td><td><img src="screen/1ui.png"/></td><td><img src="screen/2ui.png"/></td>
-</tr>
-<tr>
-<td><img src="screen/3ui.png"/></td><td><img src="screen/4ui.png"/></td><td><img src="screen/5ui.png"/></td>
-</tr>
-</table>
 
 <br><br>
 <b><h1>Datasheet integrated list:</h1></b>
