@@ -7,6 +7,14 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 
 <br><br>
 
+<h1> GPIO support </h1>
+
+<table border="1">
+<tr>
+<td><img src="screen/Raspberry-Pi-GPIO-pinouts.png"/></td><td><img src="screen/orangepi.png"/></td>
+</tr>
+</table>
+
 <h1> Simple Gtk+ UI Utility </h1>
 <table border="1">
 <tr>
@@ -40,14 +48,6 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 <td align="center"><img src="screen/Raspberry-Pi-logo.jpg"></td>
 </tr>
 </table>-->
-
-<h1> GPIO support </h1>
-
-<table border="1">
-<tr>
-<td><img src="screen/Raspberry-Pi-GPIO-pinouts.png"/></td><td><img src="screen/orangepi.png"/></td>
-</tr>
-</table>
 
 <h1> Example ofxGPIO </h1>
 
