@@ -1,5 +1,7 @@
+#ifndef GPIOSTATE_H
+#define GPIOSTATE_H
+
 #include "ofMain.h"
-#include "GPIOSlider.h"
 #include "gpio.h"
 
 /* NOT COMPLETE */
@@ -342,3 +344,4 @@ class GPIOS
 		}
 	}
 };
+#endif

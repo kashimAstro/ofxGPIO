@@ -1,0 +1,238 @@
+#ifndef UIGTK_H
+#define UIGTK_H
+
+#include <iostream>
+#include <vector>
+#include <cstring>
+#include <gtk/gtk.h>
+
+//********************************//
+//                                //
+//      Example position widget   //
+//      on window table.          //
+//                                //
+//           0        1           //
+//      *--------**--------*      //
+//      | button || check  |      //
+//  0   |  0,0   ||  0,1   |      //
+//      *--------**--------*      //
+//      *--------**--------*      //
+//      | input  || slider |      //
+//  1   |  1,0   ||  1,1   |      //
+//      *--------**--------*      //
+//      *--------**--------*      //
+//      | list   ||  etc   |      //
+//  2   |  2,0   ||  2,1   |      //
+//      *--------**--------*      //
+//                                //
+//********************************//
+
+using namespace std;
+
+namespace UIGpio 
+{
+	struct _DescEvent
+	{
+		string name;
+		string type;
+		string value;
+	}
+	DescEvent;
+
+	class UI 
+	{
+		public:
+		GtkWidget *window;
+		GtkWidget *toggle;
+		GtkWidget *button;
+		GtkWidget *check;
+		GtkWidget *slider;
+		GtkWidget *label_slider;
+		GtkWidget *hbox_slider;
+		GtkWidget *image;
+		GtkWidget *input;
+		GtkWidget *label_input;
+		GtkWidget *hbox_input;
+		GtkWidget *list;
+		GtkWidget *label_list;
+		GtkWidget *vbox_list;
+
+	        GtkWidget *color_palett;
+		GtkWidget *zone;
+		int width_window;
+		int height_window;
+
+		static _DescEvent buffer;
+		_DescEvent getEvent() { return buffer; }
+
+		static void clb_button(GtkWidget *widget, gpointer data)
+		{ 
+			const gchar * n	= gtk_button_get_label(GTK_BUTTON(widget));
+			buffer.name = n;
+			buffer.type = "Button";
+			buffer.value= "1";
+		}
+
+		static void clb_toggle(GtkWidget *widget, gpointer data)
+		{ 
+			const gchar * n	= gtk_button_get_label(GTK_BUTTON(widget));
+			buffer.name = n;
+			buffer.type = "Toggle";
+			buffer.value= "1";
+		}
+
+		static void clb_check(GtkWidget *widget, gpointer data)
+		{
+			const gchar * n	= gtk_button_get_label(GTK_BUTTON(widget));		
+			buffer.name = n;
+			buffer.type = "Check";
+			buffer.value= "1";
+		}
+
+		static void clb_slider(GtkRange *range, gpointer data)
+		{ 
+			gdouble val  = gtk_range_get_value(range);
+			const gchar * n = gtk_label_get_text(GTK_LABEL(data));
+			buffer.name = (char *)n;
+			buffer.type = "Slider";
+			buffer.value= to_string(val);
+		}
+
+		static void clb_input(GtkWidget *widget, gpointer data)
+		{ 
+			const gchar *text = gtk_entry_get_text (GTK_ENTRY(widget));
+			const gchar * n = gtk_label_get_text(GTK_LABEL(data));
+			buffer.name = (char *)n;
+			buffer.type = "Input";
+			buffer.value= text;
+		}
+
+		static void clb_list(GtkComboBox *combo, gpointer data)
+		{ 
+			const gchar *text = gtk_combo_box_get_active_text(combo);
+			const gchar * n = gtk_label_get_text(GTK_LABEL(data));
+			buffer.name = (char *)n;
+			buffer.type = "List";
+			buffer.value= text;
+		}
+
+		static gint delete_event(GtkWidget *widget, gpointer data) { exit(0); return TRUE; }
+		static void destroy(GtkWidget *widget, gpointer data) { gtk_main_quit(); }
+
+		void setWindowSize(int w, int h)
+		{
+			width_window = w;
+			height_window = h;
+		}
+
+		void setup(string title="title", int colum=10, int rows=10)
+		{	
+			int argc = 0;
+			char ** argv;
+			gtk_init(&argc, &argv);
+			window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+			gtk_signal_connect (GTK_OBJECT (window), "delete_event", GTK_SIGNAL_FUNC (delete_event), NULL);
+			gtk_signal_connect (GTK_OBJECT (window), "destroy", GTK_SIGNAL_FUNC (destroy), NULL);
+
+			gtk_container_border_width (GTK_CONTAINER (window), 2);
+
+			gtk_window_set_default_size(GTK_WINDOW(window),width_window,height_window);
+			gtk_window_set_resizable(GTK_WINDOW(window), TRUE);
+			gtk_window_set_title(GTK_WINDOW(window), title.c_str());
+
+			zone = gtk_table_new(colum,rows,TRUE);
+			gtk_table_set_row_spacing(GTK_TABLE(zone), 1, 1);
+			gtk_table_set_col_spacing(GTK_TABLE(zone), 1, 1);
+
+			gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(zone));
+		}
+
+		void addColorPalett(string title)
+		{
+			// not complete	
+		}
+
+		void addList(string title, vector<string> listed, int column, int row)
+		{
+			label_list = gtk_label_new(title.c_str());
+			list = gtk_combo_box_new_text();
+			for(auto & l : listed) {
+				gtk_combo_box_append_text(GTK_COMBO_BOX(list), l.c_str());
+			}
+			vbox_list = gtk_vbox_new(FALSE, 0);
+			gtk_box_pack_start(GTK_BOX(vbox_list), label_list, TRUE, FALSE, 0);
+			gtk_box_pack_start(GTK_BOX(vbox_list), list,       TRUE, FALSE, 0);
+
+			gtk_table_attach(GTK_TABLE(zone), vbox_list, column, column+1, row, row + 1, (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
+												(GtkAttachOptions) (GTK_FILL | GTK_EXPAND), 0, 0);
+			g_signal_connect(G_OBJECT(list), "changed", G_CALLBACK(clb_list), label_list);
+		}
+
+		void addInput(string title, int column, int row)
+		{
+			label_input = gtk_label_new(title.c_str());
+			input = gtk_entry_new();
+			
+			hbox_input = gtk_vbox_new(FALSE, 0);
+			gtk_box_pack_start(GTK_BOX(hbox_input), label_input, TRUE, FALSE, 0);
+			gtk_box_pack_start(GTK_BOX(hbox_input), input,       TRUE, FALSE, 0);
+			gtk_table_attach(GTK_TABLE(zone), hbox_input, column, column+1, row, row + 1, (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
+												      (GtkAttachOptions) (GTK_FILL | GTK_EXPAND), 0, 0);
+			g_signal_connect(input, "activate", G_CALLBACK(clb_input), label_input);
+		}
+
+		void addImage(string img, int column, int row)
+		{
+			image = gtk_image_new_from_file(img.c_str());
+			gtk_table_attach(GTK_TABLE(zone), image, column, column+1, row, row + 1, (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
+												 (GtkAttachOptions) (GTK_FILL | GTK_EXPAND), 0, 0);
+		}
+
+		void addSlider(string title, int column, int row, int min, int max, int step=1)
+		{
+			slider = gtk_hscale_new_with_range(min,max,step);
+			label_slider = gtk_label_new(title.c_str());
+
+			hbox_slider = gtk_vbox_new(FALSE, 0);
+			gtk_box_pack_start(GTK_BOX(hbox_slider), label_slider, TRUE, TRUE, 0);
+			gtk_box_pack_start(GTK_BOX(hbox_slider), slider,       TRUE, TRUE, 0);
+
+			gtk_table_attach(GTK_TABLE(zone), hbox_slider, column, column+1, row, row + 1, (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
+												       (GtkAttachOptions) (GTK_FILL | GTK_EXPAND), 0, 0);
+			g_signal_connect(slider, "value-changed", G_CALLBACK(clb_slider), label_slider);
+		}
+
+		void addToggle(string title, int column, int row)
+		{
+			toggle = gtk_toggle_button_new_with_mnemonic(title.c_str());
+			gtk_signal_connect(GTK_OBJECT (toggle), "clicked", GTK_SIGNAL_FUNC (clb_toggle), NULL);
+			gtk_table_attach(GTK_TABLE(zone), toggle, column, column+1, row, row + 1, (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
+												  (GtkAttachOptions) (GTK_FILL | GTK_EXPAND), 0, 0);
+		}
+
+		void addCheck(string title, int column, int row)
+		{
+			check = gtk_check_button_new_with_label(title.c_str());
+			gtk_signal_connect(GTK_OBJECT (check), "clicked", GTK_SIGNAL_FUNC (clb_check), NULL);
+			gtk_table_attach(GTK_TABLE(zone), check, column, column+1, row, row + 1,  (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
+												  (GtkAttachOptions) (GTK_FILL | GTK_EXPAND), 0, 0);
+		}
+
+		void addButton(string title, int column, int row)
+		{
+			button = gtk_button_new_with_label(title.c_str());
+			gtk_widget_set_size_request(button,10,5);
+			gtk_signal_connect(GTK_OBJECT(button), "clicked", GTK_SIGNAL_FUNC(clb_button), NULL);
+			gtk_table_attach(GTK_TABLE(zone), button, column, column+1, row, row + 1, (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
+												  (GtkAttachOptions) (GTK_FILL | GTK_EXPAND), 0, 0);
+		}
+		
+		void show() 
+		{
+			gtk_widget_show_all(window);
+			gtk_main();
+		}
+	};
+	_DescEvent UI::buffer;
+};
+#endif

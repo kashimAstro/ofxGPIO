@@ -25,6 +25,9 @@
 		float y;
 		float z;
 	};
+	#include "UI.h"
+	#include "TCPServer.h"
+	#include "TCPClient.h"
 #endif
 
 /* Output Log Color */
