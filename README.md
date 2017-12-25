@@ -5,7 +5,24 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 
 <b><a href="http://www.ziggurats.net/port.php?port=ofxGPIO" target="_blank">Documentation</a></b>
 
-<br><br>
+<br>
+<h1>Sample simple syntax ofxGPIO I/O</h1>
+```c++
+        GPIO gpio;
+
+        gpio.setup(GPIO17,OUT,LOW);
+
+	while(1)
+	{
+            gpio.setval_gpio(HIGH);
+            sleep(2);
+            gpio.setval_gpio(LOW);
+	    sleep(2);
+        }
+
+	gpio.unexport_gpio();
+```
+<br>
 
 <h1> GPIO support </h1>
 
