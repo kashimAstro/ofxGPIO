@@ -6,27 +6,27 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 <b><a href="http://www.ziggurats.net/port.php?port=ofxGPIO" target="_blank">Documentation</a></b>
 
 <br>
-<h1>Sample simple syntax ofxGPIO I/O</h1>
+<h2>Sample simple syntax ofxGPIO I/O</h2>
 
 ```c
-        GPIO gpio;
+GPIO gpio;
 
-        gpio.setup(GPIO17,OUT,LOW);
+gpio.setup(GPIO17,OUT,LOW);
 
-	while(1)
-	{
-            gpio.setval_gpio(HIGH);
-            sleep(2);
-            gpio.setval_gpio(LOW);
-	    sleep(2);
-        }
+while(1)
+{
+    gpio.setval_gpio(HIGH);
+    sleep(2);
+    gpio.setval_gpio(LOW);
+    sleep(2);
+}
 
-	gpio.unexport_gpio();
+gpio.unexport_gpio();
 ```
 
 <br>
 
-<h1> GPIO support </h1>
+<h2> GPIO support </h2>
 
 <table border="1">
 <tr>
@@ -34,14 +34,14 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 </tr>
 </table>
 
-<h1> Simple Gtk+ UI Utility </h1>
+<h2> Simple Gtk+ UI Utility </h2>
 <table border="1">
 <tr>
 <td><img src="screen/gtk-ui.png"/></td>
 </tr>
 </table>
 
-<h1> Zenity UI Utility </h1>
+<h2> Zenity UI Utility </h2>
 <table border="1">
 <tr>
 <td><img src="screen/6ui.png"/></td><td><img src="screen/1ui.png"/></td><td><img src="screen/2ui.png"/></td>
@@ -51,7 +51,7 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 </tr>
 </table>
 
-<h1> Sample </h1>
+<h2> Sample </h2>
 
 <table border="1">
 <tr>
@@ -68,7 +68,7 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 </tr>
 </table>-->
 
-<h1> Example ofxGPIO </h1>
+<h2> Example ofxGPIO </h2>
 
 <!--![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-logo.jpg)
 ![alt tag](https://github.com/kashimAstro/ofxGPIO/blob/master/screen/Raspberry-Pi-GPIO-pinouts.png)
@@ -206,7 +206,7 @@ https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configurin
 
 
 <br><br>
-<b><h1>Datasheet integrated list:</h1></b>
+<b><h2>Datasheet integrated list:</h2></b>
 
 <b>Drive motor:</b><br>
 http://www.ti.com/lit/ds/symlink/l293.pdf<br>
