@@ -78,6 +78,19 @@ while(1)
 </tr>
 </table>
 
+<h2>Sample syntax ofxGPIO SPI</h2>
+
+```c
+SPI2 spi;
+char data[2];
+
+data[0] = 1;
+data[1] = 2;
+
+spi.setup("/dev/spidev0.0",1000000);
+spi.readWrite(1, (unsigned char *)data, 2);
+```
+
 <!--<table>
 <tr>
 <td align="center"><img src="screen/Raspberry-Pi-logo.jpg"></td>
