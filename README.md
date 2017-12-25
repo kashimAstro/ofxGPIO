@@ -7,7 +7,8 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 
 <br>
 <h1>Sample simple syntax ofxGPIO I/O</h1>
-```c++
+
+```c
         GPIO gpio;
 
         gpio.setup(GPIO17,OUT,LOW);
@@ -22,6 +23,7 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 
 	gpio.unexport_gpio();
 ```
+
 <br>
 
 <h1> GPIO support </h1>
