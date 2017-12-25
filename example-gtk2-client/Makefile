@@ -7,7 +7,7 @@ SRCFILE  += ../src/pwm.cpp
 SRCFILE  += ../src/smbus.cpp
 SRCFILE  += ../src/TCPServer.cpp
 SRCFILE  += ../src/TCPClient.cpp
-DEFINE   = -DCOMPILE_WITHOUT_OPENFRAMEWORKS=1
+DEFINE   = -DCOMPILE_WITHOUT_OPENFRAMEWORKS=1 -DGTK_UI
 OUTPUT   = bin/$(FOLDER)
 SOURCE   = src/main.cpp
 BIN      = bin/

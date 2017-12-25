@@ -25,7 +25,9 @@
 		float y;
 		float z;
 	};
-	#include "UI.h"
+	#ifdef GTK_UI
+		#include "UI.h"
+	#endif
 	#include "TCPServer.h"
 	#include "TCPClient.h"
 #endif

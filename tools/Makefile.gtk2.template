@@ -5,7 +5,7 @@ SRCFILE  = ../src/gpio.cpp
 SRCFILE  += ../src/i2c.cpp
 SRCFILE  += ../src/pwm.cpp
 SRCFILE  += ../src/smbus.cpp
-DEFINE   = -DCOMPILE_WITHOUT_OPENFRAMEWORKS=1
+DEFINE   = -DCOMPILE_WITHOUT_OPENFRAMEWORKS=1 -DGTK_UI
 OUTPUT   = bin/$(FOLDER)
 SOURCE   = src/main.cpp
 BIN      = bin/
