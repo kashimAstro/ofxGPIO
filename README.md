@@ -23,7 +23,6 @@ while(1)
 
 gpio.unexport_gpio();
 ```
-
 <br>
 
 <h2> GPIO support </h2>
@@ -40,6 +39,23 @@ gpio.unexport_gpio();
 <td><img src="screen/gtk-ui.png"/></td>
 </tr>
 </table>
+
+<h2>Sample syntax ofxGPIO i2c</h2>
+
+```c
+I2c * bus;
+
+bus = new I2c("/dev/i2c-1");
+bus->addressSet(0x04);
+
+while(1) 
+{
+	bus->writeByte(0x04,1);
+	usleep(500000);
+	bus->writeByte(0x04,0);
+	usleep(500000);
+}
+```
 
 <h2> Zenity UI Utility </h2>
 <table border="1">
