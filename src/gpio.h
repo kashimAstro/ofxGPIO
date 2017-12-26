@@ -44,14 +44,18 @@ class GPIO {
 
 	    int export_gpio();
 	    int unexport_gpio();
+	    int close();
+
 	    int setdir_gpio(string dir);
 	    int setdir_gpio(int dir);
 
 	    int setval_gpio(string val);
 	    int setval_gpio(int val);
+	    int set(int val);
 
 	    int getval_gpio(string& val);
 	    int getval_gpio(int& val);
+	    int get();
 
 	    string get_gpionum();
 	    int get_igpionum();

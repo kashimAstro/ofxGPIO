@@ -9,19 +9,35 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 <h2>Sample simple syntax ofxGPIO I/O</h2>
 
 ```c
-GPIO gpio;
+#include <iostream>
+#include "ofxGPIO.h"
 
-gpio.setup(GPIO17,OUT,LOW);
-
-while(1)
+int main() 
 {
-    gpio.setval_gpio(HIGH);
-    sleep(2);
-    gpio.setval_gpio(LOW);
-    sleep(2);
-}
+        GPIO gpio;
+        string state;
+        int i = 0;
 
-gpio.unexport_gpio();
+        gpio.setup(GPIO17,OUT,LOW);
+
+        while(i<100)
+        {
+            gpio.set(HIGH);
+            state = "State pin17: "+to_string(gpio.get());
+            Log(state,FG_RED,BG_WHITE) <<"\n";
+            sleep(2);
+
+            gpio.set(LOW);
+            state = "State pin17: "+to_string(gpio.get());
+            Log(state,FG_BLUE,BG_WHITE) <<"\n";
+            sleep(2);
+
+            i++;
+        }
+
+        gpio.close();
+        return 0;
+}
 ```
 <br>
 
