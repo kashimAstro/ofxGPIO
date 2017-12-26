@@ -102,18 +102,7 @@ int GPIO::unexport_gpio()
 
 int GPIO::close()
 {
-    string unexport_str = "/sys/class/gpio/unexport";
-    ofstream unexportgpio(unexport_str.c_str());
-    if (!unexportgpio.is_open()) {
-        LogHighLight::Log("OPERATION FAILED:",LogHighLight::FG_RED,LogHighLight::BG_WHITE) << " ";
-	LogHighLight::Log("Unable to unexport GPIO",LogHighLight::FG_YELLOW,LogHighLight::BG_BLACK) << this->gpionum;
-	cout << endl;
-        return -1;
-    }
-
-    unexportgpio << this->gpionum ;
-    unexportgpio.close(); 
-    return 0;
+    return this->unexport_gpio();
 }
 
 int GPIO::setdir_gpio(string dir)
@@ -165,31 +154,13 @@ int GPIO::setval_gpio(string val)
 
 int GPIO::setval_gpio(int val)
 {
-    string setval_str = "/sys/class/gpio/gpio" + this->gpionum + "/value";
-    ofstream setvalgpio(setval_str.c_str()); 
-    if (!setvalgpio.is_open()){
-	LogHighLight::Log("OPERATION FAILED:",LogHighLight::FG_RED,LogHighLight::BG_WHITE) << " ";
-	LogHighLight::Log("Unable to set value of GPIO",LogHighLight::FG_YELLOW,LogHighLight::BG_BLACK) << this->gpionum;
-	cout << endl;
-        return -1;
-    }
-    setvalgpio << to_string(val);
-    setvalgpio.close();
+    this->setval_gpio(to_string(val));
     return 0;
 }
 
 int GPIO::set(int val)
 {
-    string setval_str = "/sys/class/gpio/gpio" + this->gpionum + "/value";
-    ofstream setvalgpio(setval_str.c_str()); 
-    if (!setvalgpio.is_open()){
-	LogHighLight::Log("OPERATION FAILED:",LogHighLight::FG_RED,LogHighLight::BG_WHITE) << " ";
-	LogHighLight::Log("Unable to set value of GPIO",LogHighLight::FG_YELLOW,LogHighLight::BG_BLACK) << this->gpionum;
-	cout << endl;
-        return -1;
-    }
-    setvalgpio << to_string(val);
-    setvalgpio.close();
+    this->setval_gpio(val);
     return 0;
 }
 
