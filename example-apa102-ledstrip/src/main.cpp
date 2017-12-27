@@ -2,15 +2,16 @@
 #include "ofAppNoWindow.h"
 #include "ofxGPIO.h"
 
-class ofApp : public ofBaseApp{
+class ofApp : public ofBaseApp
+{
         public:
 		LED apa;
 		vector<ofVec3f> colors;
 		int numLed;
+		int brightness;
 
-	
-		void setup(){
-			numLed=20;
+		void gen_palett()
+		{
 			for(int i = 0; i < numLed; i++) {
 					colors.push_back(ofVec3f(
 						(int)ofRandom(0,255),
@@ -18,16 +19,26 @@ class ofApp : public ofBaseApp{
 						(int)ofRandom(0,255)
 					));
 			}
+		}
+
+		void setup()
+		{
+			brightness = 5;
+			numLed     = 60;
+			gen_palett();
 			apa.setupAPA102();
 		}
 
 		void update(){
-			apa.setAPA102(numLed,colors,15);
+			gen_palett();
+			apa.setAPA102(numLed,colors,5);
+			usleep(5000);
 		}
 		
 		void exit(){
 			ofLog()<<"Exit";
-			apa.clearAPA102(numLed);
+			apa.clearAPA102(numLed+5);
+			ofExit(0);
 		}
 
 		

@@ -5,6 +5,15 @@ With utilities such as: graphical gui (Gtk+ / Zenity) and  TCP Unix socket imple
 
 <b><a href="http://www.ziggurats.net/port.php?port=ofxGPIO" target="_blank">Documentation</a></b>
 
+```c
+/* define for activated more functionality */
+
+-D COMPILE_WITHOUT_OPENFRAMEWORKS /* if = 1 work pure c++ without openframeworks toolkit */
+-D GTK_UI 			  /* if = 1 activated c++ simple bridge for UI gtk+ */
+-D ENABLE_BCM2835		  /* if = 1 activated c header BCM2835 */
+-D ENABLE_ZENITY                  /* if = 1 activated zenity for UI debug */
+```
+
 <br>
 <h2>Sample simple syntax ofxGPIO I/O</h2>
 
