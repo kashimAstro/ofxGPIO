@@ -6,6 +6,7 @@
 #include <sys/ioctl.h>
 #include <linux/spi/spidev.h>
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -28,6 +29,7 @@ class SPI2 {
 
 	  channel &= 1 ;
 
+	  memset (&spi, 0, sizeof (spi)) ;
 	  spi.tx_buf        = (unsigned long)data ;
 	  spi.rx_buf        = (unsigned long)data ;
 	  spi.len           = len ;
