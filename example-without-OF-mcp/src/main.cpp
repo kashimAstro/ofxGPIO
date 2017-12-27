@@ -12,13 +12,13 @@ int main(){
 		 data[0] = 1;
 		 data[1] = 0b10000000 |( ((a2dChannel & 7) << 4));
 		 data[2] = 0;
-		 mcp.readWrite(data);//sizeof(data) );
+		 mcp.readWrite(data);
 		 a2dVal = 0;
 		 a2dVal = (data[1]<< 8) & 0b1100000000;
 		 a2dVal |=  (data[2] & 0xff);
 		 cout << "The Result is: " << a2dVal << endl;
 		 usleep(5000);
 	}
-	mcp.xclose();
+	mcp.quit();
 	return 0;
 }
