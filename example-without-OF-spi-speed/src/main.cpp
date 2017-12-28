@@ -48,7 +48,7 @@ int main(int argc, char ** argv)
 		if(a2dChannel >= 8) a2dChannel = 0;
 		i++;
 	}
-	a2d.xclose();
+	a2d.quit();
 
 	return 0;
 }
