@@ -15,7 +15,7 @@
 
 enum MCP_DESC {
 	MCP3002 = 2,
-	MCP3008 = 7
+	MCP3008 = 8
 };
 
 class MCP {
