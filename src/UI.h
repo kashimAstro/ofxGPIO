@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <cstring>
+#include <cfloat>
+#include <tgmath.h> 
 #include <gtk/gtk.h>
 
 //********************************//
@@ -147,6 +149,30 @@ namespace UIGpio
 			buffer.value= text;
 		}
 
+		static void clb_color_changed(GtkWidget *widget, GtkColorSelection *colorsel)
+		{
+			GdkColor ncolor;
+			gtk_color_selection_get_current_color (colorsel, &ncolor);
+			gchar * cl = gdk_color_to_string(&ncolor);
+
+			string str  = to_string((int)map((int)ncolor.red,0,65534,0,255)) +","+ to_string((int)map((int)ncolor.green,0,65534,0,255)) +","+ to_string((int)map((int)ncolor.blue,0,65534,0,255));
+			buffer.name = "ColorPalett";
+			buffer.type = "ColorPalett";
+			buffer.value= str;
+		}
+
+		static void confirm_btn(GtkWidget *widget, gpointer data)
+		{
+			cout << "Color palett OK" << endl;
+    			gtk_widget_destroy(GTK_WIDGET(data));
+		}
+
+		static void close_btn(GtkWidget *widget, gpointer data)
+		{
+			cout << "Color palett Exit" << endl;
+    			gtk_widget_destroy(GTK_WIDGET(data));
+		}
+
 		static gint delete_event(GtkWidget *widget, gpointer data) { exit(0); return TRUE; }
 		static void destroy(GtkWidget *widget, gpointer data) { gtk_main_quit(); }
 
@@ -186,20 +212,18 @@ namespace UIGpio
 
 		void addColorPalett(string title)
 		{
-			//bug
+			GtkWidget *colorsel = NULL;
+			color_palett = NULL;
 			color_palett = gtk_color_selection_dialog_new(title.c_str());
-		        //GtkResponseType result = (GtkResponseType)
-			gtk_dialog_run(GTK_DIALOG(color_palett));
-			/*if (result == GTK_RESPONSE_OK) {
-				GdkColor color;
-				GtkColorSelection *colorsel;
+      			colorsel     = GTK_COLOR_SELECTION_DIALOG(color_palett)->colorsel;
+      			gtk_signal_connect(GTK_OBJECT(colorsel), "color_changed", (GtkSignalFunc)clb_color_changed, (gpointer)colorsel);
 
-				colorsel = GTK_COLOR_SELECTION(GTK_COLOR_SELECTION_DIALOG(color_palett)->colorsel);
-				gtk_color_selection_get_current_color(colorsel, &color);
-				//gtk_widget_modify_fg(GTK_WIDGET(label), GTK_STATE_NORMAL, &color);
 
-			}*/
-			// not complete	
+			gtk_signal_connect(GTK_OBJECT(color_palett), "destroy", GTK_SIGNAL_FUNC(close_btn), color_palett);
+			gtk_signal_connect(GTK_OBJECT(GTK_COLOR_SELECTION_DIALOG(color_palett)->ok_button),"clicked",GTK_SIGNAL_FUNC(confirm_btn),color_palett);
+    			gtk_signal_connect(GTK_OBJECT(GTK_COLOR_SELECTION_DIALOG(color_palett)->cancel_button),"clicked",GTK_SIGNAL_FUNC(close_btn),color_palett);
+
+      			gtk_widget_show(color_palett);
 		}
 
 		void addList(string title, vector<string> listed, int column, int row)
@@ -292,6 +316,25 @@ namespace UIGpio
 		{
 			gtk_widget_show_all(window);
 			gtk_main();
+		}
+
+		static float map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp=false) 
+		{
+			if (fabs(inputMin - inputMax) < FLT_EPSILON){
+				return outputMin;
+			} else {
+				float outVal = ((value - inputMin) / (inputMax - inputMin) * (outputMax - outputMin) + outputMin);
+				if( clamp ){
+					if(outputMax < outputMin){
+						if( outVal < outputMax )outVal = outputMax;
+						else if( outVal > outputMin )outVal = outputMin;
+					}else{
+						if( outVal > outputMax )outVal = outputMax;
+						else if( outVal < outputMin )outVal = outputMin;
+					}
+				}
+				return outVal;
+			}
 		}
 	};
 	_DescEvent UI::buffer;
