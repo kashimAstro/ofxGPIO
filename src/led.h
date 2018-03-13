@@ -14,9 +14,9 @@ class LED {
 	SPI2 spi;
 	int channel;
 
-	void setupAPA102(int port=0, int speed=8000000){
-		channel = port;
-		int state = spi.setup(port,speed);
+	void setupAPA102(string path="/dev/spidev0.0", int chan=0, int speed=8000000){
+		channel = chan;
+		int state = spi.setup(path,channel,speed);
                 if(state < 0)
 		{
        		    #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
