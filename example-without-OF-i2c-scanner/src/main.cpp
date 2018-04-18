@@ -25,7 +25,7 @@ class I2cScanner
 			{
 			 	i2c->addressSet(address);
 				result = i2c->readByte(address);
-				if(result == 0)
+				if(result == 0 || result == 255)
 				{
 					stringstream stream;
 					stream<<std::hex<<address;

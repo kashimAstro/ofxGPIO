@@ -1,17 +1,13 @@
-CC       = g++ -Wall
-FOLDER   = $(notdir $(CURDIR))
-CFLAGS   = -I../src/
-SRCFILE  = ../src/gpio.cpp
-SRCFILE  += ../src/i2c.cpp
-SRCFILE  += ../src/pwm.cpp
-SRCFILE  += ../src/smbus.cpp
-DEFINE   = -DCOMPILE_WITHOUT_OPENFRAMEWORKS=1
-OUTPUT   = -o bin/$(FOLDER)
-SOURCE   = src/main.cpp
-BIN      = bin/
+# Attempt to load a config.make file.
+# If none is found, project defaults in config.project.make will be used.
+ifneq ($(wildcard config.make),)
+	include config.make
+endif
 
-all:
-	if test -d $(BIN); then echo "Compile $(OUTPUT), wait.."; else mkdir $(BIN); fi
-	$(CC) $(OUTPUT) $(SOURCE) $(SRCFILE) $(DEFINE) $(CFLAGS) -std=c++11 
-clean:
-	rm $(OUTPUT) 
+# make sure the the OF_ROOT location is defined
+ifndef OF_ROOT
+    OF_ROOT=$(realpath ../../..)
+endif
+
+# call the project makefile!
+include $(OF_ROOT)/libs/openFrameworksCompiled/project/makefileCommon/compile.project.mk
