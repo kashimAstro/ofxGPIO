@@ -6,14 +6,14 @@ class ofApp : public ofBaseApp
 {
         public:
 		LED apa;
-		vector<ofVec3f> colors;
+		vector<ofColor> colors;
 		int numLed;
 		int brightness;
     
         void create_palett()
         {
             for(int i = 0; i < numLed; i++) {
-                colors.push_back(ofVec3f(
+                colors.push_back(ofColor(
                                          (int)ofRandom(0,255),
                                          (int)ofRandom(0,255),
                                          (int)ofRandom(0,255)
@@ -24,7 +24,7 @@ class ofApp : public ofBaseApp
         void gen_palett()
         {
             for(int i = 0; i < numLed; i++) {
-                colors[i] = ofVec3f(
+                colors[i] = ofColor(
                               (int)ofRandom(0,255),
                               (int)ofRandom(0,255),
                               (int)ofRandom(0,255)
@@ -42,8 +42,11 @@ class ofApp : public ofBaseApp
 
 		void update(){
 			gen_palett();
-			apa.setAPA102(numLed,colors,5);
-			usleep(1000);
+			apa.setAPA102(numLed,colors,brightness);
+			usleep(100000);
+            //cycling from blackout up to max brightness
+            if(brightness<31) brightness++;
+            else brightness=0;
 		}
 		
 		void exit(){

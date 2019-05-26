@@ -34,13 +34,13 @@ class LED {
 		}
 	}
 
-	void setAPA102(int numLed, vector<ofVec3f> colors, int BRIGHTNESS){
+	void setAPA102(int numLed, vector<ofColor> colors, int BRIGHTNESS){
 		int a;
                 uint8_t buffer0[1], buffer1[4];
                 srand(time(NULL));
 		xnumLed = numLed;
-		if(BRIGHTNESS>29)
-			BRIGHTNESS=30;
+		if(BRIGHTNESS>30)
+			BRIGHTNESS=31;
 
                 for(a=0; a<4; a++){
                        buffer0[0]=0x00;//0b00000000;
@@ -49,9 +49,9 @@ class LED {
                 }
                 for(a=0; a<numLed; a++){
                        buffer1[0]=0b11100000 | (0b00011111 & BRIGHTNESS);//(BRIGHTNESS & 0b00011111) | 0b11100000;
-                       buffer1[1]=static_cast<uint8_t>(colors[a].z);  //blue
-                       buffer1[2]=static_cast<uint8_t>(colors[a].y);  //green
-                       buffer1[3]=static_cast<uint8_t>(colors[a].x);  //red
+                       buffer1[1]=static_cast<uint8_t>(colors[a].b);  //blue
+                       buffer1[2]=static_cast<uint8_t>(colors[a].g);  //green
+                       buffer1[3]=static_cast<uint8_t>(colors[a].r);  //red
                        if( spi.readWrite(channel, (unsigned char*)buffer1, 4) == -1)
 		       	std::cout << "Error: SPI RGB data failed!" << std::endl;
                 }
