@@ -34,7 +34,7 @@ class LED {
 		}
 	}
 
-	void setAPA102(int numLed, vector<ofVec3f> colors, int BRIGHTNESS){
+	void setAPA102(int numLed, vector<ofVec3f>& colors, int BRIGHTNESS){
 		int a;
                 uint8_t buffer0[1], buffer1[4];
                 srand(time(NULL));
