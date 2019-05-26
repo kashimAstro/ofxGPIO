@@ -39,8 +39,8 @@ class LED {
                 uint8_t buffer0[1], buffer1[4];
                 srand(time(NULL));
 		xnumLed = numLed;
-		if(BRIGHTNESS>29)
-			BRIGHTNESS=30;
+		if(BRIGHTNESS>30)
+			BRIGHTNESS=31;
 
                 for(a=0; a<4; a++){
                        buffer0[0]=0x00;//0b00000000;
