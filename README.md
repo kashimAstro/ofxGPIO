@@ -54,7 +54,10 @@ int main()
 
 <table border="1">
 <tr>
-<td><img src="screen/Raspberry-Pi-GPIO-pinouts.png"/></td><td><img src="screen/orangepi.png"/></td>
+<td><img src="screen/Raspberry-Pi-GPIO-pinouts.png"/></td>
+<td><img src="screen/orangepi.png"/></td>
+<td><img src="screen/jeston_nano_pin.png"/></td>
+<td><img src="screen/jeston_nano.png"/></td>
 </tr>
 </table>
 
