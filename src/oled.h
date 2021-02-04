@@ -25,9 +25,9 @@ class OLED
 	public:
 	I2c * bus;
 
-	void setup(OLEDBG bg)
+	void setup(OLEDBG bg,const string &device = "/dev/i2c-1")
 	{
-		bus = new I2c("/dev/i2c-1");
+		bus = new I2c(device.c_str());
                 bus->addressSet(ADROLED);
                 bus->writeByte(CMD,COMMAND_CHARGE_PUMP_SETTING);
                 bus->writeByte(CMD,COMMAND_CHARGE_PUMP_ENABLE);
