@@ -13,10 +13,10 @@ I2c::I2c(const char * deviceName)
 	if (fd == -1)
 	{
 		#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
-                        ofLog()<<"Failed to open I2c device!";
-                #else
-                        std::cout<<"Failed to open I2c device!"<<std::endl;
-                #endif
+			ofLog()<<"Failed to open I2c device!";
+		#else
+			std::cout<<"Failed to open I2c device!"<<std::endl;
+		#endif
 	}
 }
 
@@ -31,10 +31,10 @@ void I2c::setup(const char * deviceName)
 	if (fd == -1)
 	{
 		#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
-                        ofLog()<<"Failed to open I2c device!";
-                #else
-                        std::cout<<"Failed to open I2c device!"<<std::endl;
-                #endif
+			ofLog()<<"Failed to open I2c device!";
+		#else
+			std::cout<<"Failed to open I2c device!"<<std::endl;
+		#endif
 	}
 }
 
@@ -44,10 +44,10 @@ int I2c::addressSet(uint8_t address)
 	if (result == -1)
 	{
 		#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
-                        ofLog()<<"Failed to set address.";
-                #else
-                        std::cout<<"Failed to set address."<<std::endl;
-                #endif
+			ofLog()<<"Failed to set address.";
+		#else
+			std::cout<<"Failed to set address."<<std::endl;
+		#endif
 		return -1;
 	}
 	return 1;
@@ -59,10 +59,10 @@ int I2c::write(uint8_t command)
 	if (result == -1)
 	{
 		#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
-                        ofLog()<<"Failed to write byte to I2c.";
-                #else
-                        std::cout<<"Failed to write byte to I2c."<<std::endl;
-                #endif
+			ofLog()<<"Failed to write byte to I2c.";
+		#else
+			std::cout<<"Failed to write byte to I2c."<<std::endl;
+		#endif
 		return -1;
 	}
 	return 1;
@@ -74,10 +74,10 @@ int I2c::writeByte(uint8_t command, uint8_t data)
 	if (result == -1)
 	{
 		#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
-                        ofLog()<<"Failed to write byte to I2c.";
-                #else
-                        std::cout<<"Failed to write byte to I2c."<<std::endl;
-                #endif
+			ofLog()<<"Failed to write byte to I2c.";
+		#else
+			std::cout<<"Failed to write byte to I2c."<<std::endl;
+		#endif
 		return -1;
 	}
 	return 1;
@@ -85,14 +85,14 @@ int I2c::writeByte(uint8_t command, uint8_t data)
 
 int I2c::writeBlockData(uint8_t command, uint8_t size, __u8 * data)
 {
-        int result = i2c_smbus_write_i2c_block_data(fd, command, size, data);
+    int result = i2c_smbus_write_i2c_block_data(fd, command, size, data);
 	if (result == -1)
 	{
 		#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
-                        ofLog()<<"Failed to write block data byte to I2c.";
-                #else
-                        std::cout<<"Failed to write block data byte to I2c."<<std::endl;
-                #endif
+	    ofLog()<<"Failed to write block data byte to I2c.";
+	#else
+	    std::cout<<"Failed to write block data byte to I2c."<<std::endl;
+	#endif
 		return -1;
 	}
 	return 1;
@@ -102,18 +102,23 @@ uint16_t I2c::readByte(uint8_t command)
 {
 	int result = i2c_smbus_read_byte_data(fd, command);
 	if (result == -1)
-	{
-		#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
-                        ofLog()<<"Failed to read byte from I2c.";
-                #else
-                        std::cout<<"Failed to read byte from I2c."<<std::endl;
-                #endif
+	{ // TODO:
+	  // we should be able to return a negative value
+	  // Change return value to int16_t?
+	  // Or just int as the other functions in this class?
+		#ifndef COMPILE_WITHO0UT_OPENFRAMEWORKS
+			ofLog()<<"Failed to read byte from I2c.";
+		#else
+			std::cout<<"Failed to read byte from I2c."<<std::endl;
+		#endif
 	}
 	return result;
 }
 
 uint16_t I2c::tryReadByte(uint8_t command)
 {
+	// This executes the SMBus “read byte” protocol,
+	// returning negative errno else a data byte received from the device 
 	return i2c_smbus_read_byte_data(fd, command);
 }
 
@@ -123,12 +128,12 @@ uint16_t I2c::readBlock(uint8_t command, uint8_t size, uint8_t * data)
 	if (result != size)
 	{
 		#ifndef COMPILE_WITHOUT_OPENFRAMEWORKS
-                        ofLog()<<"Failed to read block from I2c.";
-                #else
-                        std::cout<<"Failed to read block from I2c."<<std::endl;
-                #endif
+			ofLog()<<"Failed to read block from I2c.";
+		#else
+			std::cout<<"Failed to read block from I2c."<<std::endl;
+		#endif
 	}
-	return result;
+	return result; //TODO: At the moment this can be -1 but return value is unsigned
 }
 
 std::vector<std::pair<std::string, uint8_t>> I2c::getDevices(uint8_t start /*=0*/, uint8_t end /*128*/)

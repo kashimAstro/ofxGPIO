@@ -105,3 +105,8 @@ Desktop.ini
 *.log
 *.sql
 *.sqlite
+
+# backup ignores
+.vs/
+dll/
+addons.lnk
