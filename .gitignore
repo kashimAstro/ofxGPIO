@@ -110,3 +110,13 @@ Desktop.ini
 .vs/
 dll/
 addons.lnk
+
+**/obj/
+
+*.exe
+
+*.dll
+
+*.lib
+
+*.exp

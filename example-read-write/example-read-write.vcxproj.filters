@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxGPIO\src\bcm2835.c">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxGPIO\src\gpio.cpp">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxGPIO\src\i2c.cpp">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxGPIO\src\pwm.cpp">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxGPIO\src\smbus.cpp">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxGPIO\src\TCPClient.cpp">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxGPIO\src\TCPServer.cpp">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClCompile>
+	</ItemGroup>
+	<ItemGroup>
+		<Filter Include="src">
+			<UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons">
+			<UniqueIdentifier>{97FF0EA5--601-D-4F-9D-A-266-656A34D66D4D}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxGPIO">
+			<UniqueIdentifier>{F8354B81--0F4-4-46-AB-A-A70-5738C5C57BC7}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxGPIO\src">
+			<UniqueIdentifier>{70AB5FA2--27D-9-45-C5-9-B45-8389FF1D39D1}</UniqueIdentifier>
+		</Filter>
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\bcm2835.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\font.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\google_image.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\gpio.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\gpio_state.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\i2c.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\kalman.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\led.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\LogHighLight.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\mcp.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\ofxGPIO.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\oled.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\pwm.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\readata.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\servo.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\smbus.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\spi2.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\TCPClient.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\TCPServer.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\UI.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxGPIO\src\zenity.h">
+			<Filter>addons\ofxGPIO\src</Filter>
+		</ClInclude>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc" />
+	</ItemGroup>
+</Project>
