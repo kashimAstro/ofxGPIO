@@ -48,6 +48,9 @@ class I2c {
 			addressSet(address);
 			return tryReadByte(command);
 		}
+
+		static std::vector<std::pair<std::string, uint8_t>> getDevices(uint8_t start = 0, u_int8_t end = 128);
+
 	private:
 		int fd;
 };

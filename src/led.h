@@ -53,7 +53,7 @@ class LED {
 		  215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 };
 	}
 
-	void setWS2801(int numLed, vector<ofColor> colors, int BRIGHTNESS){
+	void setWS2801(int numLed, vector<ofColor>& colors, int BRIGHTNESS){
 		int a;
                 uint8_t buffer0[1], buffer1[4];
                 srand(time(NULL));
@@ -105,7 +105,7 @@ class LED {
 		}
 	}
 
-	void setAPA102(int numLed, vector<ofColor> colors, int BRIGHTNESS){
+	void setAPA102(int numLed, vector<ofColor>& colors, int BRIGHTNESS){
 		int a;
                 uint8_t buffer0[1], buffer1[4];
                 srand(time(NULL));

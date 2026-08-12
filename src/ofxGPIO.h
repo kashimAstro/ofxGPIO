@@ -47,12 +47,14 @@ using namespace LogHighLight;
 #include "mcp.h"
 #include "font.h"
 #include "readata.h"
+
 /* only openframeworks */
 #ifndef COMPILE_WITHOUT_OPENFRAMEWORKS 
 	#include "google_image.h"
 	#include "gpio_state.h"
 #endif
 /* end OF */
+
 /* core high level */
 #include "led.h"
 #include "oled.h"
